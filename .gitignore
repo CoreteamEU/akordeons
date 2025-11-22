@@ -8,3 +8,5 @@ DerivedData/
 .netrc
 new_site_assets/
 plan.md
+*.py
+old_site/

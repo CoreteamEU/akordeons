@@ -1,0 +1,47 @@
+{
+  "playlistId": "duo_violinist",
+  "title": "Duo ar vijolnieku Gidons Grīnbergs",
+  "description": "Duo ar vijolnieku Gidons Grīnbergs ieraksti",
+  "tracks": [
+    {
+      "filename": "20.02.13_Saluts.mp3",
+      "title": "20.02.13 Saluts",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "20.02.13_Padam_Padam.mp3",
+      "title": "20.02.13 Padam Padam",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "20.02.13_Zem_Parizes_Debesim.mp3",
+      "title": "20.02.13 Zem Parizes Debesim",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "20.02.13_Elizejas_Lauki.mp3",
+      "title": "20.02.13 Elizejas Lauki",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "20.02.13_Virietis_un_Sieviete.mp3",
+      "title": "20.02.13 Virietis un Sieviete",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    }
+  ]
+}

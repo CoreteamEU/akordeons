@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "title": "Akordeoniste Evita Dūra",
+    "description": "Akordeoniste Evita Dūra - mūzika, ieraksti un koncerti",
+    "keywords": "akordeons, accordion, musette, undertango, Evita Dūra"
+  },
+  "navigation": {
+    "home": "Ieraksti",
+    "music": "Mūzika",
+    "videos": "Video",
+    "about": "Evita",
+    "contact": "Kontakti"
+  },
+  "header": {
+    "title": "Akordeoniste Evita Dūra",
+    "phone": "+37129115951",
+    "email": "evita.duura@gmail.com"
+  },
+  "footer": {
+    "copyright": "© 2024 Akordeoniste Evita Dūra",
+    "phone": "+37129115951",
+    "email": "evita.duura@gmail.com"
+  },
+  "home": {
+    "title": "Ieraksti",
+    "subtitle": "Klausieties mūziku",
+    "description": "Sveicināti manā mūzikas pasaulē. Šeit varat klausīties dažādus ierakstus - solo, duetus un kvarteta Undertango kompozīcijas."
+  },
+  "music": {
+    "title": "Mūzika",
+    "subtitle": "Ierakstu izlase",
+    "description": "Klausieties dažādus mūzikas ierakstus - solo, duetus un kvarteta Undertango kompozīcijas."
+  },
+  "videos": {
+    "title": "Video",
+    "subtitle": "Video ieraksti",
+    "description": "Skatieties video ierakstus no koncertiem un izpildījumiem."
+  },
+  "about": {
+    "title": "Evita",
+    "subtitle": "Par mani",
+    "description": "Akordeoniste Evita Dūra"
+  },
+  "contact": {
+    "title": "Kontakti",
+    "subtitle": "Sazinieties ar mani",
+    "description": "Sazinieties ar mani, lai uzzinātu vairāk par koncertiem un sadarbību.",
+    "phone": "Tālrunis",
+    "email": "E-pasts"
+  },
+  "language": {
+    "lv": "Latviešu",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "player": {
+    "play": "Atskaņot",
+    "pause": "Pauzēt",
+    "stop": "Apturēt",
+    "volume": "Skaļums",
+    "loading": "Ielādē...",
+    "error": "Kļūda ielādējot audio"
+  }
+}
+

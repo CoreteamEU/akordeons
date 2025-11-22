@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "title": "Accordionist Evita Dūra",
+    "description": "Accordionist Evita Dūra - music, recordings and concerts",
+    "keywords": "accordion, musette, undertango, Evita Dūra"
+  },
+  "navigation": {
+    "home": "Recordings",
+    "music": "Music",
+    "videos": "Videos",
+    "about": "Evita",
+    "contact": "Contact"
+  },
+  "header": {
+    "title": "Accordionist Evita Dūra",
+    "phone": "+37129115951",
+    "email": "evita.duura@gmail.com"
+  },
+  "footer": {
+    "copyright": "© 2024 Accordionist Evita Dūra",
+    "phone": "+37129115951",
+    "email": "evita.duura@gmail.com"
+  },
+  "home": {
+    "title": "Recordings",
+    "subtitle": "Listen to music",
+    "description": "Welcome to my musical world. Here you can listen to various recordings - solo, duets and Undertango quartet compositions."
+  },
+  "music": {
+    "title": "Music",
+    "subtitle": "Recordings selection",
+    "description": "Listen to various music recordings - solo, duets and Undertango quartet compositions."
+  },
+  "videos": {
+    "title": "Videos",
+    "subtitle": "Video recordings",
+    "description": "Watch video recordings from concerts and performances."
+  },
+  "about": {
+    "title": "Evita",
+    "subtitle": "About me",
+    "description": "Accordionist Evita Dūra"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch",
+    "description": "Contact me to learn more about concerts and collaboration.",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "language": {
+    "lv": "Latviešu",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "stop": "Stop",
+    "volume": "Volume",
+    "loading": "Loading...",
+    "error": "Error loading audio"
+  }
+}
+

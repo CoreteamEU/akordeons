@@ -1,0 +1,47 @@
+{
+  "playlistId": "undertango_collaborations",
+  "title": "Undertango sadarbības",
+  "description": "Undertango sadarbības ieraksti",
+  "tracks": [
+    {
+      "filename": "Undertango_Flores_del_Alma_ar_Strikaite.mp3",
+      "title": "Undertango_Flores_del_Alma_ar_Strikaite",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "Undertango_Zilaa_Rapsodija_ar_Strikaite.mp3",
+      "title": "Undertango_Zilaa_Rapsodija_ar_Strikaite",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "Undertango_Pie_Rio_Negro_ar_Jope.mp3",
+      "title": "Undertango_Pie_Rio_Negro_ar_Jope",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "Undertango_Riga_Sanfrancisko_ar_Jope.mp3",
+      "title": "Undertango_Riga_Sanfrancisko_ar_Jope",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    },
+    {
+      "filename": "Undertango_Por_Una_Cabeza(excerpt)_ar_Strikaite_ar_Jope.mp3",
+      "title": "Undertango_Por_Una_Cabeza(excerpt)_ar_Strikaite_ar_Jope",
+      "duration": {
+        "minutes": 3,
+        "seconds": 30
+      }
+    }
+  ]
+}

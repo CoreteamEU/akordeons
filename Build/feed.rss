@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Akordeoniste Evita Dūra</title>
+    <link>https://coreteameu.github.io/akordeons/</link>
+    <description>Akordeoniste Evita Dūra - mūzika, ieraksti un koncerti</description>
+    <language>lv</language>
+    <lastBuildDate>Mon, 01 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://coreteameu.github.io/akordeons/feed.rss" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Mūzika un ieraksti</title>
+      <link>https://coreteameu.github.io/akordeons/music.html</link>
+      <description>Klausieties dažādus mūzikas ierakstus - solo, duetus un kvarteta Undertango kompozīcijas.</description>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+    </item>
+    
+    <item>
+      <title>Video ieraksti</title>
+      <link>https://coreteameu.github.io/akordeons/videos.html</link>
+      <description>Skatieties video ierakstus no koncertiem un izpildījumiem.</description>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
+
