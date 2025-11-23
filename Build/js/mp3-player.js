@@ -73,7 +73,6 @@ class MP3Player {
             </button>
           </div>
           <div class="volume-control">
-            <label for="volume-${this.playlistId}">🔊</label>
             <input type="range" id="volume-${this.playlistId}" class="volume-slider" 
                    min="0" max="100" value="100" aria-label="Volume">
           </div>
