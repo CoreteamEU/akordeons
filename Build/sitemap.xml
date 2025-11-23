@@ -13,9 +13,9 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://coreteameu.github.io/akordeons/music.html</loc>
+    <loc>https://coreteameu.github.io/akordeons/about.html</loc>
     <lastmod>2024-01-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -23,12 +23,6 @@
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://coreteameu.github.io/akordeons/about.html</loc>
-    <lastmod>2024-01-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://coreteameu.github.io/akordeons/contact.html</loc>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Akordeoniste Evita Dūra" data-i18n="meta.description">
+  <meta name="description" content="Akordeoniste Evita Dūra - Mūzika" data-i18n="meta.description">
   <meta name="keywords" content="akordeons, accordion, musette, undertango" data-i18n="meta.keywords">
-  <title data-i18n="meta.title">Akordeoniste Evita Dūra</title>
+  <title data-i18n="music.title">Mūzika - Akordeoniste Evita Dūra</title>
   
   <!-- Prevent caching during development -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -40,6 +40,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/colors.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/player.css">
 </head>
 <body>
   <!-- Header -->
@@ -71,10 +72,9 @@
     <div class="nav-container">
       <button type="button" class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <ul class="nav-menu">
-        <li><a href="index.html" class="active" data-i18n="navigation.home">Ieraksti</a></li>
-        <li><a href="music.html" data-i18n="navigation.music">Mūzika</a></li>
-        <li><a href="videos.html" data-i18n="navigation.videos">Video</a></li>
+        <li><a href="index.html" class="active" data-i18n="navigation.music">Mūzika</a></li>
         <li><a href="about.html" data-i18n="navigation.about">Evita</a></li>
+        <li><a href="videos.html" data-i18n="navigation.videos">Video</a></li>
         <li><a href="contact.html" data-i18n="navigation.contact">Kontakti</a></li>
       </ul>
     </div>
@@ -82,8 +82,16 @@
 
   <!-- Main Content -->
   <main>
-    <h1 data-i18n="home.title">Ieraksti</h1>
-    <p data-i18n="home.description">Sveicināti manā mūzikas pasaulē. Šeit varat klausīties dažādus ierakstus - solo, duetus un kvarteta Undertango kompozīcijas.</p>
+    <h1 data-i18n="music.title">Mūzika</h1>
+    <p data-i18n="music.description">Klausieties dažādus mūzikas ierakstus - solo, duetus un kvarteta Undertango kompozīcijas.</p>
+    
+    <!-- Playlist containers -->
+    <div id="playlist-solo"></div>
+    <div id="playlist-duets"></div>
+    <div id="playlist-kvartets_undertango"></div>
+    <div id="playlist-duo_violinist"></div>
+    <div id="playlist-undertango_live"></div>
+    <div id="playlist-undertango_collaborations"></div>
   </main>
 
   <!-- Footer -->
@@ -102,5 +110,26 @@
   <script src="js/language.js"></script>
   <script src="js/dark-mode.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/mp3-player.js"></script>
+  <script>
+    // Initialize players when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      const playlists = [
+        'solo',
+        'duets',
+        'kvartets_undertango',
+        'duo_violinist',
+        'undertango_live',
+        'undertango_collaborations'
+      ];
+
+      playlists.forEach(playlistId => {
+        const container = document.getElementById(`playlist-${playlistId}`);
+        if (container) {
+          new MP3Player(`playlist-${playlistId}`, playlistId);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
