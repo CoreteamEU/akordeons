@@ -61,15 +61,17 @@ class MP3Player {
           <p class="player-description">${this.playlist.description || ''}</p>
         </div>
         <div class="player-controls">
-          <button class="player-btn play-btn" aria-label="Play">
-            <span>▶</span>
-          </button>
-          <button class="player-btn pause-btn" style="display:none;" aria-label="Pause">
-            <span>⏸</span>
-          </button>
-          <button class="player-btn stop-btn" aria-label="Stop">
-            <span>⏹</span>
-          </button>
+          <div class="player-buttons">
+            <button class="player-btn play-btn" aria-label="Play">
+              <span>▶</span>
+            </button>
+            <button class="player-btn pause-btn" style="display:none;" aria-label="Pause">
+              <span>⏸</span>
+            </button>
+            <button class="player-btn stop-btn" aria-label="Stop">
+              <span>⏹</span>
+            </button>
+          </div>
           <div class="volume-control">
             <label for="volume-${this.playlistId}">🔊</label>
             <input type="range" id="volume-${this.playlistId}" class="volume-slider" 
