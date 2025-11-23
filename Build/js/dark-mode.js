@@ -5,7 +5,9 @@
 
 class DarkModeManager {
   constructor() {
-    this.theme = this.getStoredTheme() || this.getSystemTheme();
+    // Always start with system theme, user can override with toggle
+    this.theme = this.getSystemTheme();
+    this.manualOverride = false;
     this.init();
   }
 
@@ -13,7 +15,15 @@ class DarkModeManager {
    * Initialize dark mode manager
    */
   init() {
-    this.applyTheme(this.theme);
+    // Check if user has a stored manual preference
+    const storedTheme = this.getStoredTheme();
+    if (storedTheme) {
+      // User has manually set a preference, use it but mark as override
+      this.manualOverride = true;
+      this.theme = storedTheme;
+    }
+    
+    this.applyTheme(this.theme, false);
     this.setupToggle();
     this.setupSystemThemeListener();
   }
@@ -53,14 +63,20 @@ class DarkModeManager {
   /**
    * Apply theme to document
    */
-  applyTheme(theme) {
+  applyTheme(theme, isManual = false) {
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
     this.theme = theme;
-    this.storeTheme(theme);
+    
+    // Only store theme if manually set by user
+    if (isManual) {
+      this.manualOverride = true;
+      this.storeTheme(theme);
+    }
+    
     this.updateToggleButton();
   }
 
@@ -69,7 +85,7 @@ class DarkModeManager {
    */
   toggle() {
     const newTheme = this.theme === 'dark' ? 'light' : 'dark';
-    this.applyTheme(newTheme);
+    this.applyTheme(newTheme, true); // Mark as manual override
   }
 
   /**
@@ -114,12 +130,12 @@ class DarkModeManager {
     if (window.matchMedia) {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       
-      // Only apply system theme if user hasn't manually set a preference
+      // Always follow system theme changes unless user has manually overridden
       const handleChange = (e) => {
-        const storedTheme = this.getStoredTheme();
-        // If no stored preference, follow system
-        if (!storedTheme) {
-          this.applyTheme(e.matches ? 'dark' : 'light');
+        // Only follow system if user hasn't manually set a preference
+        if (!this.manualOverride) {
+          const systemTheme = e.matches ? 'dark' : 'light';
+          this.applyTheme(systemTheme, false);
         }
       };
 
@@ -148,4 +164,5 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DarkModeManager;
 }
+
 

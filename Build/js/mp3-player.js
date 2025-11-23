@@ -167,7 +167,14 @@ class MP3Player {
   static stopAllPlayers(exceptPlayer) {
     MP3Player.instances.forEach(player => {
       if (player !== exceptPlayer && player.isPlaying) {
-        player.stop();
+        // Stop without triggering stopAllPlayers again to avoid infinite loop
+        if (player.audio) {
+          player.audio.pause();
+          player.audio.currentTime = 0;
+          player.isPlaying = false;
+          player.updatePlayPauseButtons();
+          player.updateProgress();
+        }
       }
     });
   }
@@ -240,6 +247,10 @@ class MP3Player {
    * Stop playback
    */
   stop() {
+    // Stop all players (including this one) when any stop button is clicked
+    MP3Player.stopAllPlayers(null);
+    
+    // Also ensure this player is stopped
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
@@ -375,4 +386,5 @@ class MP3Player {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = MP3Player;
 }
+
 

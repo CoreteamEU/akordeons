@@ -344,3 +344,4 @@ Each step should result in a commit that:
 - Default language is Latvian (lv)
 - Site URL: https://coreteameu.github.io/akordeons/
 
+
