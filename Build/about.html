@@ -7,6 +7,36 @@
   <meta name="keywords" content="akordeons, accordion, musette, undertango" data-i18n="meta.keywords">
   <title data-i18n="about.title">Evita - Akordeoniste Evita Dūra</title>
   
+  <!-- Prevent caching during development -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <!-- Version constant (load first) -->
+  <script src="js/version.js"></script>
+  <script>
+    // Auto-apply version to CSS and JS resources
+    (function() {
+      const version = window.APP_VERSION || Date.now();
+      
+      // Update CSS links
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+          if (!link.href.includes('?v=')) {
+            link.href += (link.href.includes('?') ? '&' : '?') + 'v=' + version;
+          }
+        });
+        
+        // Update script tags (except version.js itself)
+        document.querySelectorAll('script[src]').forEach(script => {
+          if (script.src && !script.src.includes('?v=') && !script.src.includes('version.js')) {
+            script.src += (script.src.includes('?') ? '&' : '?') + 'v=' + version;
+          }
+        });
+      });
+    })();
+  </script>
+  
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/colors.css">
   <link rel="stylesheet" href="css/main.css">

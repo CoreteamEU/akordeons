@@ -37,7 +37,9 @@ class MP3Player {
    */
   async loadPlaylist() {
     try {
-      const response = await fetch(`data/${this.playlistId}.json`);
+      // Add cache-busting version parameter
+      const version = window.APP_VERSION || Date.now();
+      const response = await fetch(`data/${this.playlistId}.json?v=${version}`);
       if (!response.ok) {
         throw new Error(`Failed to load playlist: ${this.playlistId}`);
       }

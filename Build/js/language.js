@@ -45,7 +45,9 @@ class LanguageManager {
    */
   async loadContent(lang) {
     try {
-      const response = await fetch(`data/content-${lang}.json`);
+      // Add cache-busting version parameter
+      const version = window.APP_VERSION || Date.now();
+      const response = await fetch(`data/content-${lang}.json?v=${version}`);
       if (!response.ok) {
         throw new Error(`Failed to load content for language: ${lang}`);
       }
