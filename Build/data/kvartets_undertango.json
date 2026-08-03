@@ -13,82 +13,82 @@
   "tracks": [
     {
       "filename": "Jerzy_Peterburshsky-El_sol_sueno.mp3",
-      "title": "Jerzy Peterburshsky-El sol sueno",
+      "title": "Jerzy Petersburski - El sol sueño",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 0
       }
     },
     {
       "filename": "Astor_Piazzolla-_Muerte_del_Angel.mp3",
-      "title": "Astor Piazzolla- Muerte del Angel",
+      "title": "Astor Piazzolla - La Muerte del Ángel",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 11
       }
     },
     {
       "filename": "2._Tango_pour_Claude.mp3",
-      "title": "2. Tango pour Claude",
+      "title": "Tango pour Claude",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 55
       }
     },
     {
       "filename": "Astor_Piazzolla-_Milonga_del_Angel.mp3",
-      "title": "Astor Piazzolla- Milonga del Angel",
+      "title": "Astor Piazzolla - Milonga del Ángel",
       "duration": {
-        "minutes": 3,
+        "minutes": 6,
         "seconds": 30
       }
     },
     {
       "filename": "Astor_Piazzolla-_Oblivion.mp3",
-      "title": "Astor Piazzolla- Oblivion",
+      "title": "Astor Piazzolla - Oblivion",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 4,
+        "seconds": 48
       }
     },
     {
       "filename": "Jose_Maria_Lucchesi-_S_ampanies_a_dzirkstis.mp3",
-      "title": "Jose Maria Lucchesi- Šampanieša dzirkstis",
+      "title": "Jose Maria Lucchesi - Šampanieša dzirkstis",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 5
       }
     },
     {
       "filename": "1._French_touch.mp3",
-      "title": "1. French touch",
+      "title": "French Touch",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 14,
+        "seconds": 53
       }
     },
     {
       "filename": "Osvaldo_Puglieze-_La_Yumba.mp3",
-      "title": "Osvaldo Puglieze- La Yumba",
+      "title": "Osvaldo Pugliese - La Yumba",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 50
       }
     },
     {
       "filename": "Johann_Strauss_II-_Tritsch-Tratsch_polkka.mp3",
-      "title": "Johann Strauss II- Tritsch-Tratsch polkka",
+      "title": "Johann Strauss II - Tritsch-Tratsch Polka",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 29
       }
     },
     {
       "filename": "Astor_Piazzolla-_Libertango.mp3",
-      "title": "Astor Piazzolla- Libertango",
+      "title": "Astor Piazzolla - Libertango",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 17
       }
     }
   ]

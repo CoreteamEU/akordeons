@@ -120,9 +120,20 @@ header {
 
 .contact-info a {
   color: var(--color-text-secondary);
-  display: flex;
+}
+
+/* Shared layout for any link with a leading icon (header/footer contact
+   info, contact page cards) - keeps the icon aligned with the text
+   regardless of the surrounding context's own display type. */
+.contact-link {
+  display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+.icon-phone,
+.icon-mail {
+  flex-shrink: 0;
 }
 
 .header-controls {
@@ -268,11 +279,14 @@ footer {
 
 .footer-contact {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .footer-contact a {
   color: var(--color-text-secondary);
-  margin: 0 0.5rem;
 }
 
 .footer-copyright {

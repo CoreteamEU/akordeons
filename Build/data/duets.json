@@ -13,34 +13,34 @@
   "tracks": [
     {
       "filename": "Duets_05_Zhanis.mp3",
-      "title": "Duets_05_Zhanis",
+      "title": "Žanis",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 20
       }
     },
     {
       "filename": "03_Libertango_(duets_akordeons.lv).mp3",
-      "title": "03 Libertango (duets akordeons.lv)",
+      "title": "Astor Piazzolla - Libertango",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 6
       }
     },
     {
       "filename": "09_Accordeoniste_(duets_akordeons.lv_feat_Katrina_Gupalo).mp3",
-      "title": "09 Accordeoniste (duets akordeons.lv feat Katrina Gupalo)",
+      "title": "Accordeoniste (feat. Katrīna Gupalo)",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 31
       }
     },
     {
       "filename": "06_Rudens_lapas_(duets_akordeons.lv).mp3",
-      "title": "06 Rudens lapas (duets akordeons.lv)",
+      "title": "Rudens lapas",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 4,
+        "seconds": 40
       }
     }
   ]

@@ -13,90 +13,90 @@
   "tracks": [
     {
       "filename": "06_Undertango_-_Por_Una_Cabeza_(Live,_Strikaite,_Jope,_Liepupe).mp3",
-      "title": "06 Undertango - Por Una Cabeza (Live, Strikaite, Jope, Liepupe)",
+      "title": "Carlos Gardel - Por Una Cabeza (Live at Liepupe, feat. Strikaite, Jope)",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 34
       }
     },
     {
       "filename": "08_Undertango_-_La_Tarantula_(Live,_Strikaite,_Liepupe).mp3",
-      "title": "08 Undertango - La Tarantula (Live, Strikaite, Liepupe)",
+      "title": "La Tarantula (Live at Liepupe, feat. Strikaite)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 1,
+        "seconds": 44
       }
     },
     {
       "filename": "10_Undertango_-_Charly_(Live,_Liepupe).mp3",
-      "title": "10 Undertango - Charly (Live, Liepupe)",
+      "title": "Charli (Live at Liepupe)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 24
       }
     },
     {
       "filename": "05_Undertango_-_Sanfrancisko_(Live,_Jope,_Liepupe).mp3",
-      "title": "05 Undertango - Sanfrancisko (Live, Jope, Liepupe)",
+      "title": "Sanfrancisko (Live at Liepupe, feat. Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 22
       }
     },
     {
       "filename": "03_Undertango_-_Kaadreiz_maijaa_(Live,_Strikaite,_Jope,_Liepupe).mp3",
-      "title": "03 Undertango - Kaadreiz maijaa (Live, Strikaite, Jope, Liepupe)",
+      "title": "Kādreiz maijā (Live at Liepupe, feat. Strikaite, Jope)",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 16
       }
     },
     {
       "filename": "01_Undertango_-_Shampaniesha_dzirkstis_(Live,_Liepupe).mp3",
-      "title": "01 Undertango - Shampaniesha dzirkstis (Live, Liepupe)",
+      "title": "Šampanieša dzirkstis (Live at Liepupe)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 7
       }
     },
     {
       "filename": "04_Undertango_-_Lambetvoks_(Live,_Liepupe).mp3",
-      "title": "04 Undertango - Lambetvoks (Live, Liepupe)",
+      "title": "Lambetvoks (Live at Liepupe)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 2
       }
     },
     {
       "filename": "02_Undertango_-_Kad_Sieviete_Juut_Miilas_Ilgas_(Live,_Strikaite,_Liepupe).mp3",
-      "title": "02 Undertango - Kad Sieviete Juut Miilas Ilgas (Live, Strikaite, Liepupe)",
+      "title": "Kad sieviete jūt mīlas ilgas (Live at Liepupe, feat. Strikaite)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 43
       }
     },
     {
       "filename": "07_Undertango_-_Pie_Rio_Negro_(Live,_Jope,_Liepupe).mp3",
-      "title": "07 Undertango - Pie Rio Negro (Live, Jope, Liepupe)",
+      "title": "Pie Rio Negro (Live at Liepupe, feat. Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 58
       }
     },
     {
       "filename": "11_Undertango_-_When_I_fall_in_love_(Live,_Strikaite,_Jope,_Liepupe).mp3",
-      "title": "11 Undertango - When I fall in love (Live, Strikaite, Jope, Liepupe)",
+      "title": "When I Fall in Love (Live at Liepupe, feat. Strikaite, Jope)",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 37
       }
     },
     {
       "filename": "09_Undertango_-_Merkakitis_(Live,_Strikaite,_Jope,_Liepupe).mp3",
-      "title": "09 Undertango - Merkakitis (Live, Strikaite, Jope, Liepupe)",
+      "title": "Mērkaķītis (Live at Liepupe, feat. Strikaite, Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 42
       }
     }
   ]

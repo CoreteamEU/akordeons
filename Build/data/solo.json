@@ -13,66 +13,66 @@
   "tracks": [
     {
       "filename": "Solo_02_Mazaa_raganinja(akordeons.lv).mp3",
-      "title": "Solo_02_Mazaa_raganinja(akordeons.lv)",
+      "title": "Mazā raganiņa",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 1,
+        "seconds": 1
       }
     },
     {
       "filename": "akordeons.lv_-_Akordeona_Solo_-_French_Touch.mp3",
-      "title": "akordeons.lv - Akordeona Solo - French Touch",
+      "title": "French Touch",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 2
       }
     },
     {
       "filename": "Rameau_-_Putnu_trelli.mp3",
       "title": "Rameau - Putnu trelli",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 56
       }
     },
     {
       "filename": "Solo_01_Margo_valsis(akordeons.lv).mp3",
-      "title": "Solo_01_Margo_valsis(akordeons.lv)",
+      "title": "Margo valsis",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 24
       }
     },
     {
       "filename": "indiferente_(solo._jauzliek_kafe_skan_as,_ka_dzi_vais_un_beigas_ja_izdze_s).mp3",
-      "title": "indiferente (solo. jauzliek kafe skaņas, kā dzīvais un beigas jāizdzēs)",
+      "title": "Indiferente",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 41
       }
     },
     {
       "filename": "Solo_03_Akordeonists_bohemikjis(akordeons.lv).mp3",
-      "title": "Solo_03_Akordeonists_bohemikjis(akordeons.lv)",
+      "title": "Akordeonists bohēmiķis",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 0,
+        "seconds": 50
       }
     },
     {
       "filename": "Richard_Galliano-_Spleen.mp3",
-      "title": "Richard Galliano- Spleen",
+      "title": "Richard Galliano - Spleen",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 5,
+        "seconds": 8
       }
     },
     {
       "filename": "Joseph_Kosma-_Les_Feuilles_Mortes.mp3",
-      "title": "Joseph Kosma- Les Feuilles Mortes",
+      "title": "Joseph Kosma - Les Feuilles Mortes",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 4,
+        "seconds": 3
       }
     }
   ]

@@ -42,6 +42,7 @@ Dev URL target: `https://coreteameu.github.io/akordeons/`.
 - No caching during development: the cache-control meta tags and `version.js` query-param busting in every HTML `<head>` are intentional — don't remove them without being asked.
 - Comment code only where the *why* isn't obvious (matches the general project convention, and plan.md explicitly asks for comments "where it makes sense" — not everywhere).
 - Each implementation step should be small, testable, and land as its own commit reviewed by the user manually — don't bundle unrelated changes.
+- **Never translate or transliterate "Evita Dūra"** (the accordionist's name) in any language's content JSON — it stays in Latin script exactly as written, even in `content-ru.json`. "Эвита Дуура" is wrong. This applies to the standalone first name "Evita" too, not just the full "Evita Dūra".
 
 ## MP3 player localization (fixed — pattern to keep following)
 

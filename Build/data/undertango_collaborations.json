@@ -13,42 +13,42 @@
   "tracks": [
     {
       "filename": "Undertango_Flores_del_Alma_ar_Strikaite.mp3",
-      "title": "Undertango_Flores_del_Alma_ar_Strikaite",
+      "title": "Flores del Alma (feat. Strikaite)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 44
       }
     },
     {
       "filename": "Undertango_Zilaa_Rapsodija_ar_Strikaite.mp3",
-      "title": "Undertango_Zilaa_Rapsodija_ar_Strikaite",
+      "title": "Zilā rapsodija (feat. Strikaite)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 4,
+        "seconds": 29
       }
     },
     {
       "filename": "Undertango_Pie_Rio_Negro_ar_Jope.mp3",
-      "title": "Undertango_Pie_Rio_Negro_ar_Jope",
+      "title": "Pie Rio Negro (feat. Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 51
       }
     },
     {
       "filename": "Undertango_Riga_Sanfrancisko_ar_Jope.mp3",
-      "title": "Undertango_Riga_Sanfrancisko_ar_Jope",
+      "title": "Rīga-Sanfrancisko (feat. Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 19
       }
     },
     {
       "filename": "Undertango_Por_Una_Cabeza(excerpt)_ar_Strikaite_ar_Jope.mp3",
-      "title": "Undertango_Por_Una_Cabeza(excerpt)_ar_Strikaite_ar_Jope",
+      "title": "Por Una Cabeza (excerpt, feat. Strikaite, Jope)",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 16
       }
     }
   ]

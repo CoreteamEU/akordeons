@@ -13,42 +13,42 @@
   "tracks": [
     {
       "filename": "20.02.13_Saluts.mp3",
-      "title": "20.02.13 Saluts",
+      "title": "Saluts",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 25
       }
     },
     {
       "filename": "20.02.13_Padam_Padam.mp3",
-      "title": "20.02.13 Padam Padam",
+      "title": "Édith Piaf - Padam Padam",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 3
       }
     },
     {
       "filename": "20.02.13_Zem_Parizes_Debesim.mp3",
-      "title": "20.02.13 Zem Parizes Debesim",
+      "title": "Zem Parīzes debesīm",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 4
       }
     },
     {
       "filename": "20.02.13_Elizejas_Lauki.mp3",
-      "title": "20.02.13 Elizejas Lauki",
+      "title": "Elizejas lauki",
       "duration": {
-        "minutes": 3,
-        "seconds": 30
+        "minutes": 2,
+        "seconds": 1
       }
     },
     {
       "filename": "20.02.13_Virietis_un_Sieviete.mp3",
-      "title": "20.02.13 Virietis un Sieviete",
+      "title": "Vīrietis un sieviete",
       "duration": {
         "minutes": 3,
-        "seconds": 30
+        "seconds": 48
       }
     }
   ]
