@@ -5,40 +5,53 @@
  */
 
 :root {
-  /* Light Mode Colors */
-  --color-bg-primary: #faf9f7;
-  --color-bg-secondary: #f5f3f0;
-  --color-bg-tertiary: #edeae6;
-  
-  --color-text-primary: #2c2c2c;
-  --color-text-secondary: #5a5a5a;
-  --color-text-tertiary: #8a8a8a;
-  
-  --color-accent-primary: #c78120;
-  --color-accent-secondary: #a6895d;
-  --color-accent-hover: #fa8d06;
-  
-  --color-border: #e0ddd8;
-  --color-border-light: #f0ede8;
-  
-  --color-link: #c78120;
-  --color-link-hover: #a6895d;
-  --color-link-visited: #7a5f3f;
-  
+  /* Light Mode Colors - "Tango Nocturne": wine red primary, brass gold
+     secondary, on a warm off-white with a faint plum cast. Card surfaces
+     are pure white so they lift clearly off the page background. */
+  --color-bg-primary: #faf6f5;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5eceb;
+
+  --color-text-primary: #241a1c;
+  --color-text-secondary: #5f5052;
+  --color-text-tertiary: #7a696b;
+
+  --color-accent-primary: #8c2f39;
+  --color-accent-secondary: #c9962f;
+  --color-accent-hover: #6f2029;
+
+  --color-border: #ecdedc;
+  --color-border-light: #f5eceb;
+
+  --color-link: #8c2f39;
+  --color-link-hover: #6f2029;
+  --color-link-visited: #6d3540;
+
+  /* Tinted fill for selected/active rows - the accent at low opacity,
+     so it reads as "the same colour, quieter" rather than a new grey. */
+  --color-accent-wash: rgba(140, 47, 57, 0.08);
+
+  /* The accent used for TEXT on a surface. Kept separate from
+     --color-accent-primary (which is a fill colour behind white text):
+     deep wine works as text on light, but on the dark theme it drops to
+     ~2.4:1, so dark mode swaps this to the brass gold instead. */
+  --color-accent-text: #8c2f39;
+
   /* Status colors */
-  --color-success: #4a7c59;
-  --color-error: #c85a4a;
-  --color-warning: #d4a574;
-  --color-info: #6b8fa8;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --color-success: #3f7350;
+  --color-error: #b3392c;
+  --color-warning: #b07d1c;
+  --color-info: #4a6f8a;
+
+  /* Shadows - warm-tinted rather than neutral black, and strong enough
+     that cards actually read as raised. */
+  --shadow-sm: 0 1px 2px rgba(60, 20, 25, 0.06);
+  --shadow-md: 0 6px 18px -6px rgba(60, 20, 25, 0.20);
+  --shadow-lg: 0 16px 40px -12px rgba(60, 20, 25, 0.28);
 
   /* Page background photo + dot texture (decorative, kept very subtle) */
-  --bg-photo-tint: rgba(250, 249, 247, 0.93);
-  --bg-dot-color: rgba(44, 44, 44, 0.05);
+  --bg-photo-tint: rgba(250, 246, 245, 0.93);
+  --bg-dot-color: rgba(36, 26, 28, 0.05);
 
   /* Header logo: the source asset is a white silhouette, which is
      invisible against a light header background. Recolor it to the
@@ -47,43 +60,53 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Mode Colors */
-  --color-bg-primary: #1a1a1a;
-  --color-bg-secondary: #242424;
-  --color-bg-tertiary: #2d2d2d;
-  
-  --color-text-primary: #e8e8e8;
-  --color-text-secondary: #c0c0c0;
-  --color-text-tertiary: #9a9a9a;
-  
-  --color-accent-primary: #c78120;
-  --color-accent-secondary: #a6895d;
-  --color-accent-hover: #d4b890;
-  
-  --color-border: #3a3a3a;
-  --color-border-light: #2d2d2d;
-  
-  --color-link: #b8956a;
-  --color-link-hover: #d4b890;
-  --color-link-visited: #a6895d;
-  
+  /* Dark Mode Colors - a plum-tinted near-black rather than neutral grey,
+     so the wine theme carries through instead of going monochrome. */
+  --color-bg-primary: #1a1416;
+  --color-bg-secondary: #241c1f;
+  --color-bg-tertiary: #2f2429;
+
+  --color-text-primary: #f0e9ea;
+  --color-text-secondary: #c4b6b8;
+  --color-text-tertiary: #9a8a8d;
+
+  /* Wine is lightened here so white button text still clears AA, and
+     links switch to the brass gold - deep wine on near-black would not
+     be legible as link text. */
+  --color-accent-primary: #b23a47;
+  --color-accent-secondary: #d9a441;
+  --color-accent-hover: #c9505e;
+
+  --color-border: #3a2c30;
+  --color-border-light: #2f2429;
+
+  --color-link: #d9a441;
+  --color-link-hover: #e8bc86;
+  --color-link-visited: #c9962f;
+
+  /* Wine-tinted to match the wine left-border on active rows */
+  --color-accent-wash: rgba(178, 58, 71, 0.14);
+
+  --color-accent-text: #d9a441;
+
   /* Status colors (adjusted for dark mode) */
-  --color-success: #5d9a6f;
-  --color-error: #d96a5a;
+  --color-success: #6aa87c;
+  --color-error: #e07a6c;
   --color-warning: #e4b584;
-  --color-info: #7ba0b8;
-  
-  /* Shadows (lighter in dark mode) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --color-info: #8bb0c8;
+
+  /* Shadows (deeper in dark mode - the surface lift has to come from
+     the shadow since the bg/card contrast is smaller here) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 18px -6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
 
   /* Page background photo + dot texture (decorative, kept very subtle).
      Dark mode needs a heavier tint than light mode at the same visual
      weight: the photo's bright highlights (keys, skin) still punch
      through a dark overlay much more than they do against a light one. */
-  --bg-photo-tint: rgba(26, 26, 26, 0.97);
-  --bg-dot-color: rgba(232, 232, 232, 0.06);
+  --bg-photo-tint: rgba(26, 20, 22, 0.97);
+  --bg-dot-color: rgba(240, 233, 234, 0.06);
 
   /* White logo already reads fine against the dark header - keep it white. */
   --logo-color: #ffffff;
