@@ -265,21 +265,6 @@ footer {
   background-color: var(--color-bg-tertiary);
 }
 
-/* Responsive Design - Hamburger button visible */
-@media (max-width: 1024px) {
-  .mobile-menu-toggle {
-    display: flex !important;
-    width: 64px !important;
-    height: 64px !important;
-    min-width: 64px !important;
-    min-height: 64px !important;
-    font-size: 2rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-  }
-}
-
 @media (max-width: 768px) {
   html {
     font-size: 14px;

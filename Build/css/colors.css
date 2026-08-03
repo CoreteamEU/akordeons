@@ -35,6 +35,10 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  /* Page background photo + dot texture (decorative, kept very subtle) */
+  --bg-photo-tint: rgba(250, 249, 247, 0.93);
+  --bg-dot-color: rgba(44, 44, 44, 0.05);
 }
 
 [data-theme="dark"] {
@@ -68,6 +72,10 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+  /* Page background photo + dot texture (decorative, kept very subtle) */
+  --bg-photo-tint: rgba(26, 26, 26, 0.93);
+  --bg-dot-color: rgba(232, 232, 232, 0.06);
 }
 
 /* Base color application */
@@ -75,6 +83,27 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Decorative page background: a small dot texture over a heavily
+     tinted photo, so the photo reads as a faint watermark rather than
+     an image. The tint/dot colors swap via the --bg-* variables above,
+     so this stays legible and subtle in both light and dark mode. */
+  background-image:
+    radial-gradient(var(--bg-dot-color) 1px, transparent 1px),
+    linear-gradient(var(--bg-photo-tint), var(--bg-photo-tint)),
+    url("../images/background_small.jpg");
+  background-size:
+    16px 16px,
+    cover,
+    cover;
+  background-position:
+    0 0,
+    center top,
+    center top;
+  background-repeat:
+    repeat,
+    no-repeat,
+    no-repeat;
 }
 
 /* Ensure good contrast ratios for accessibility */

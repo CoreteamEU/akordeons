@@ -79,8 +79,9 @@ class LanguageManager {
     // Update elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
       const key = element.getAttribute('data-i18n');
-      const value = this.getNestedValue(this.content, key);
+      let value = this.getNestedValue(this.content, key);
       if (value !== undefined) {
+        value = this.applyPlaceholders(value);
         if (element.tagName === 'INPUT' && element.type === 'text') {
           element.value = value;
         } else if (element.hasAttribute('data-i18n-html')) {
@@ -101,6 +102,14 @@ class LanguageManager {
     if (metaDesc && this.content.meta && this.content.meta.description) {
       metaDesc.setAttribute('content', this.content.meta.description);
     }
+  }
+
+  /**
+   * Substitute runtime placeholders (e.g. {year}) in a content string
+   */
+  applyPlaceholders(value) {
+    if (typeof value !== 'string') return value;
+    return value.replace(/\{year\}/g, new Date().getFullYear());
   }
 
   /**
