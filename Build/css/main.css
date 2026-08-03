@@ -85,9 +85,24 @@ header {
   gap: 0.75rem;
 }
 
-.logo img {
+/* Recolorable logo: the source PNG is a white silhouette, used here as a
+   CSS mask so it can be tinted per-theme via --logo-color instead of
+   shipping separate colored image files. */
+.logo-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 40px;
   height: 40px;
-  width: auto;
+  background-color: var(--logo-color);
+  -webkit-mask-image: url('../images/akordeons_logo_white.png');
+  mask-image: url('../images/akordeons_logo_white.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color 0.3s ease;
 }
 
 .logo-text {

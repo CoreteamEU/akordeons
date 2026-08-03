@@ -39,6 +39,11 @@
   /* Page background photo + dot texture (decorative, kept very subtle) */
   --bg-photo-tint: rgba(250, 249, 247, 0.93);
   --bg-dot-color: rgba(44, 44, 44, 0.05);
+
+  /* Header logo: the source asset is a white silhouette, which is
+     invisible against a light header background. Recolor it to the
+     button/accent color in light mode via CSS mask (see .logo-icon). */
+  --logo-color: var(--color-accent-primary);
 }
 
 [data-theme="dark"] {
@@ -73,9 +78,15 @@
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.5);
 
-  /* Page background photo + dot texture (decorative, kept very subtle) */
-  --bg-photo-tint: rgba(26, 26, 26, 0.93);
+  /* Page background photo + dot texture (decorative, kept very subtle).
+     Dark mode needs a heavier tint than light mode at the same visual
+     weight: the photo's bright highlights (keys, skin) still punch
+     through a dark overlay much more than they do against a light one. */
+  --bg-photo-tint: rgba(26, 26, 26, 0.97);
   --bg-dot-color: rgba(232, 232, 232, 0.06);
+
+  /* White logo already reads fine against the dark header - keep it white. */
+  --logo-color: #ffffff;
 }
 
 /* Base color application */
