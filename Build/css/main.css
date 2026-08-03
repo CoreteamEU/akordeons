@@ -252,13 +252,34 @@ footer {
   cursor: pointer;
   border-radius: 4px;
   color: var(--color-text-primary);
+  font-size: 1rem; /* Base size for hamburger icon */
+  align-items: center;
+  justify-content: center;
+  /* Reset any inherited constraints */
+  margin: 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .mobile-menu-toggle:hover {
   background-color: var(--color-bg-tertiary);
 }
 
-/* Responsive Design */
+/* Responsive Design - Hamburger button visible */
+@media (max-width: 1024px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    font-size: 2rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 14px;
@@ -268,17 +289,52 @@ footer {
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.5rem; }
   
+  /* Ensure nav container doesn't constrain button */
+  .nav-container {
+    padding: 0.5rem 1rem; /* Add vertical padding for button */
+    display: flex;
+    align-items: center;
+  }
+  
   .header-container {
     flex-direction: column;
     align-items: flex-start;
   }
   
   .contact-info {
-    font-size: 0.85rem;
+    font-size: 1.1rem; /* Larger in compact mode */
   }
   
-  .mobile-menu-toggle {
-    display: block;
+  .contact-info a {
+    font-size: 1.1rem; /* Larger in compact mode */
+  }
+  
+  /* Force hamburger button to be 64x64px - use most specific selector */
+  .nav-container .mobile-menu-toggle,
+  nav .mobile-menu-toggle,
+  .mobile-menu-toggle,
+  button.mobile-menu-toggle {
+    display: flex !important;
+    /* Force exact size - twice as large */
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 2rem !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+    line-height: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    border-width: 2px !important;
+    overflow: visible !important;
+    /* Override any inherited sizing */
+    aspect-ratio: 1 / 1 !important;
   }
   
   .nav-menu {
@@ -319,6 +375,31 @@ footer {
   .contact-info {
     flex-direction: column;
     gap: 0.5rem;
+    font-size: 1.2rem; /* Even larger on very small screens */
+  }
+  
+  .contact-info a {
+    font-size: 1.2rem; /* Even larger on very small screens */
+  }
+  
+  .mobile-menu-toggle {
+    /* Keep it large on very small screens too */
+    display: flex !important;
+    padding: 0 !important; /* Remove padding, use fixed size */
+    margin: 0 !important;
+    font-size: 2rem !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+    line-height: 1 !important; /* Remove line-height constraints */
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    border-width: 2px !important; /* Slightly thicker border for visibility */
   }
 }
 

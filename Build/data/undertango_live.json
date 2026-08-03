@@ -1,7 +1,15 @@
 {
   "playlistId": "undertango_live",
-  "title": "Undertango Live",
-  "description": "Undertango Live ieraksti",
+  "title": {
+    "lv": "Undertango Live",
+    "ru": "Undertango Live",
+    "en": "Undertango Live"
+  },
+  "description": {
+    "lv": "Undertango Live ieraksti",
+    "ru": "Записи Undertango Live",
+    "en": "Undertango Live recordings"
+  },
   "tracks": [
     {
       "filename": "06_Undertango_-_Por_Una_Cabeza_(Live,_Strikaite,_Jope,_Liepupe).mp3",

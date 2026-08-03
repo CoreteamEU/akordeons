@@ -1,7 +1,15 @@
 {
   "playlistId": "solo",
-  "title": "Solo",
-  "description": "Solo ieraksti",
+  "title": {
+    "lv": "Solo",
+    "ru": "Соло",
+    "en": "Solo"
+  },
+  "description": {
+    "lv": "Solo ieraksti",
+    "ru": "Сольные записи",
+    "en": "Solo recordings"
+  },
   "tracks": [
     {
       "filename": "Solo_02_Mazaa_raganinja(akordeons.lv).mp3",

@@ -56,6 +56,11 @@ class LanguageManager {
       this.storeLanguage(lang);
       this.updatePageContent();
       this.updateLanguageSwitcher();
+      // Let other components (e.g. dynamically rendered MP3 players) know
+      // the active language/content changed, so they can relocalize.
+      window.dispatchEvent(new CustomEvent('languagechange', {
+        detail: { lang: this.currentLanguage, content: this.content }
+      }));
     } catch (error) {
       console.error('Error loading content:', error);
       // Fallback to Latvian if other language fails

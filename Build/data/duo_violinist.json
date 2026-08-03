@@ -1,7 +1,15 @@
 {
   "playlistId": "duo_violinist",
-  "title": "Duo ar vijolnieku Gidons Grīnbergs",
-  "description": "Duo ar vijolnieku Gidons Grīnbergs ieraksti",
+  "title": {
+    "lv": "Duo ar vijolnieku Gidons Grīnbergs",
+    "ru": "Дуэт со скрипачом Гидоном Гринбергсом",
+    "en": "Duo with violinist Gidons Grīnbergs"
+  },
+  "description": {
+    "lv": "Duo ar vijolnieku Gidons Grīnbergs ieraksti",
+    "ru": "Записи дуэта со скрипачом Гидоном Гринбергсом",
+    "en": "Duo with violinist Gidons Grīnbergs recordings"
+  },
   "tracks": [
     {
       "filename": "20.02.13_Saluts.mp3",

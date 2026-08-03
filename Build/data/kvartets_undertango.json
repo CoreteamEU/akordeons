@@ -1,7 +1,15 @@
 {
   "playlistId": "kvartets_undertango",
-  "title": "Kvartets Undertango",
-  "description": "Kvartets Undertango ieraksti",
+  "title": {
+    "lv": "Kvartets Undertango",
+    "ru": "Квартет Undertango",
+    "en": "Undertango Quartet"
+  },
+  "description": {
+    "lv": "Kvartets Undertango ieraksti",
+    "ru": "Записи квартета Undertango",
+    "en": "Undertango Quartet recordings"
+  },
   "tracks": [
     {
       "filename": "Jerzy_Peterburshsky-El_sol_sueno.mp3",

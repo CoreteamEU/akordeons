@@ -1,7 +1,15 @@
 {
   "playlistId": "duets",
-  "title": "Duets",
-  "description": "Duets ieraksti",
+  "title": {
+    "lv": "Duets",
+    "ru": "Дуэты",
+    "en": "Duets"
+  },
+  "description": {
+    "lv": "Duets ieraksti",
+    "ru": "Записи дуэтов",
+    "en": "Duet recordings"
+  },
   "tracks": [
     {
       "filename": "Duets_05_Zhanis.mp3",

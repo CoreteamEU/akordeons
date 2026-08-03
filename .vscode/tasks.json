@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Server",
+            "type": "shell",
+            "command": "python3 dev_server.py",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^\\[dev_server\\] Serving .* at http://localhost:8080"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^\\[dev_server\\] Serving",
+                    "endsPattern": "^\\[dev_server\\] Serving"
+                }
+            }
+        }
+    ]
+}

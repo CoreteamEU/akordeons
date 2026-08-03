@@ -1,7 +1,15 @@
 {
   "playlistId": "undertango_collaborations",
-  "title": "Undertango sadarbības",
-  "description": "Undertango sadarbības ieraksti",
+  "title": {
+    "lv": "Undertango sadarbības",
+    "ru": "Совместные записи Undertango",
+    "en": "Undertango Collaborations"
+  },
+  "description": {
+    "lv": "Undertango sadarbības ieraksti",
+    "ru": "Записи совместных выступлений Undertango",
+    "en": "Undertango collaboration recordings"
+  },
   "tracks": [
     {
       "filename": "Undertango_Flores_del_Alma_ar_Strikaite.mp3",

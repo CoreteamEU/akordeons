@@ -9,4 +9,5 @@ DerivedData/
 new_site_assets/
 plan.md
 *.py
+!dev_server.py
 old_site/

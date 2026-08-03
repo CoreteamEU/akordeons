@@ -1,22 +1,22 @@
 {
   "meta": {
-    "title": "Аккордеонистка Эвита Дуура",
-    "description": "Аккордеонистка Эвита Дуура - музыка и концерты",
-    "keywords": "аккордеон, accordion, musette, undertango, Эвита Дуура"
+    "title": "Аккордеонистка Evita Dūra",
+    "description": "Аккордеонистка Evita Dūra - музыка и концерты",
+    "keywords": "аккордеон, accordion, musette, undertango, Evita Dūra"
   },
   "navigation": {
     "music": "Музыка",
     "videos": "Видео",
-    "about": "Эвита",
+    "about": "Evita",
     "contact": "Контакты"
   },
   "header": {
-    "title": "Аккордеонистка Эвита Дуура",
+    "title": "Аккордеонистка Evita Dūra",
     "phone": "+37129115951",
     "email": "evita.duura@gmail.com"
   },
   "footer": {
-    "copyright": "© 2024 Аккордеонистка Эвита Дуура",
+    "copyright": "© 2024 Аккордеонистка Evita Dūra",
     "phone": "+37129115951",
     "email": "evita.duura@gmail.com"
   },
@@ -31,9 +31,9 @@
     "description": "Смотрите видеозаписи с концертов и выступлений."
   },
   "about": {
-    "title": "Эвита",
+    "title": "Evita",
     "subtitle": "Обо мне",
-    "description": "Аккордеонистка Эвита Дуура"
+    "description": "Аккордеонистка Evita Dūra"
   },
   "contact": {
     "title": "Контакты",

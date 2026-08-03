@@ -51,6 +51,30 @@ class MP3Player {
   }
 
   /**
+   * Get a localized UI string from the site's content JSON (player.* keys),
+   * falling back to the given default if the language content isn't loaded yet.
+   */
+  t(key, fallback) {
+    if (typeof languageManager !== 'undefined' && languageManager && languageManager.content) {
+      const value = languageManager.getContent(`player.${key}`);
+      if (value) return value;
+    }
+    return fallback;
+  }
+
+  /**
+   * Get a localized playlist field (title/description). Supports both the
+   * current { lv, ru, en } object shape and plain strings for backward compatibility.
+   */
+  getLocalizedText(field) {
+    const value = this.playlist && this.playlist[field];
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    const lang = (typeof languageManager !== 'undefined' && languageManager && languageManager.currentLanguage) || 'lv';
+    return value[lang] || value.lv || Object.values(value)[0] || '';
+  }
+
+  /**
    * Create player UI
    */
   createPlayerUI() {
@@ -59,24 +83,24 @@ class MP3Player {
     const playerHTML = `
       <div class="mp3-player" data-playlist="${this.playlistId}">
         <div class="player-header">
-          <h3 class="player-title">${this.playlist.title}</h3>
-          <p class="player-description">${this.playlist.description || ''}</p>
+          <h3 class="player-title">${this.getLocalizedText('title')}</h3>
+          <p class="player-description">${this.getLocalizedText('description')}</p>
         </div>
         <div class="player-controls">
           <div class="player-buttons">
-            <button class="player-btn play-btn" aria-label="Play">
+            <button class="player-btn play-btn" aria-label="${this.t('play', 'Play')}" title="${this.t('play', 'Play')}">
               <span>▶</span>
             </button>
-            <button class="player-btn pause-btn" style="display:none;" aria-label="Pause">
+            <button class="player-btn pause-btn" style="display:none;" aria-label="${this.t('pause', 'Pause')}" title="${this.t('pause', 'Pause')}">
               <span>⏸</span>
             </button>
-            <button class="player-btn stop-btn" aria-label="Stop">
+            <button class="player-btn stop-btn" aria-label="${this.t('stop', 'Stop')}" title="${this.t('stop', 'Stop')}">
               <span>⏹</span>
             </button>
           </div>
           <div class="volume-control">
-            <input type="range" id="volume-${this.playlistId}" class="volume-slider" 
-                   min="0" max="100" value="100" aria-label="Volume">
+            <input type="range" id="volume-${this.playlistId}" class="volume-slider"
+                   min="0" max="100" value="100" aria-label="${this.t('volume', 'Volume')}">
           </div>
           <div class="player-info">
             <span class="current-track"></span>
@@ -100,6 +124,47 @@ class MP3Player {
   }
 
   /**
+   * Re-apply localized text to already-rendered player chrome, without
+   * tearing down/re-rendering the track list or interrupting playback.
+   * Called when the site language changes.
+   */
+  applyLocalization() {
+    if (!this.playlist || !this.container) return;
+
+    const titleEl = this.container.querySelector('.player-title');
+    const descEl = this.container.querySelector('.player-description');
+    if (titleEl) titleEl.textContent = this.getLocalizedText('title');
+    if (descEl) descEl.textContent = this.getLocalizedText('description');
+
+    const playBtn = this.container.querySelector('.play-btn');
+    const pauseBtn = this.container.querySelector('.pause-btn');
+    const stopBtn = this.container.querySelector('.stop-btn');
+    const volumeSlider = this.container.querySelector('.volume-slider');
+
+    if (playBtn) {
+      playBtn.setAttribute('aria-label', this.t('play', 'Play'));
+      playBtn.setAttribute('title', this.t('play', 'Play'));
+    }
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-label', this.t('pause', 'Pause'));
+      pauseBtn.setAttribute('title', this.t('pause', 'Pause'));
+    }
+    if (stopBtn) {
+      stopBtn.setAttribute('aria-label', this.t('stop', 'Stop'));
+      stopBtn.setAttribute('title', this.t('stop', 'Stop'));
+    }
+    if (volumeSlider) {
+      volumeSlider.setAttribute('aria-label', this.t('volume', 'Volume'));
+    }
+
+    // If playback errored out, the error message should also relocalize.
+    if (!this.isPlaying && this.audio && this.audio.error) {
+      const currentTrackEl = this.container.querySelector('.current-track');
+      if (currentTrackEl) currentTrackEl.textContent = this.t('error', 'Error loading audio');
+    }
+  }
+
+  /**
    * Render track list
    */
   renderTrackList() {
@@ -110,7 +175,7 @@ class MP3Player {
       const duration = `${track.duration.minutes}:${String(track.duration.seconds).padStart(2, '0')}`;
       return `
         <li class="track-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-          <span class="track-number">${index + 1}</span>
+          <span class="track-number">${index + 1}.</span>
           <span class="track-title">${track.title}</span>
           <span class="track-duration">${duration}</span>
         </li>
@@ -380,10 +445,18 @@ class MP3Player {
     
     const currentTrackEl = this.container.querySelector('.current-track');
     if (currentTrackEl) {
-      currentTrackEl.textContent = 'Error loading audio';
+      currentTrackEl.textContent = this.t('error', 'Error loading audio');
     }
   }
 }
+
+// Relocalize all rendered players whenever the site language changes
+// (dispatched by LanguageManager after it loads new content).
+window.addEventListener('languagechange', () => {
+  if (MP3Player.instances) {
+    MP3Player.instances.forEach(player => player.applyLocalization());
+  }
+});
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {

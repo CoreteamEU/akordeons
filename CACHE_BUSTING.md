@@ -21,16 +21,16 @@ To prevent browser caching during development, this site uses a single version c
 
 ## Updating the version
 
-When you make changes to CSS, JS, or HTML files and want to force browsers to reload:
+**This is now automatic during local development.** Run `python3 dev_server.py`
+(instead of `python3 -m http.server`) to serve `build/` — it watches every file under
+`build/` (except `js/version.js` itself) and rewrites `window.APP_VERSION` to a fresh
+timestamp whenever anything changes. Just save your edit and reload the browser; no
+manual step needed. See `dev_server.py` at the repo root and the "Testing locally"
+section of `CLAUDE.md`.
 
-**Simply update ONE file: `build/js/version.js`**
+If you ever need to bump it by hand (e.g. running a plain `http.server` without the
+watcher, or preparing a production deploy), edit `build/js/version.js` directly:
 
-Change:
-```javascript
-window.APP_VERSION = '1.0.0';
-```
-
-To:
 ```javascript
 window.APP_VERSION = '1.0.1';
 ```
