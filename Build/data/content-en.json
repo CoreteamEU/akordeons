@@ -33,7 +33,9 @@
   "about": {
     "title": "Evita",
     "subtitle": "About me",
-    "description": "Accordionist Evita Dūra"
+    "description": "Accordionist Evita Dūra",
+    "photoCredit": "Photo: Liene Pētersone",
+    "bio": "<p>Evita Dūra graduated from the Jāzeps Mediņš Music Secondary School and, with distinction, from the master's programme of the Jāzeps Vītols Latvian Academy of Music - Keyboard Instruments Department, in the class of teacher Jurijs Rižovs. She furthered her studies at the Gdańsk Academy of Music under the renowned composer and accordionist Krzysztof Olczak.</p><p>Evita is a laureate of numerous competitions, including international ones. She actively takes part in Latvia's cultural life, performing both as a soloist and with various ensembles at the largest concert halls in Latvia and neighbouring countries, at the Latvian National Opera, in palaces, theatres, embassies and more.</p><p>In her concerts she performs both classical and popular music. She has received particular recognition for her virtuoso arrangements of French chanson and for performing works by French composers written for the accordion.</p><p>She has performed together with Raimonds Pauls, Marija Naumova and others.</p>"
   },
   "contact": {
     "title": "Contact",
