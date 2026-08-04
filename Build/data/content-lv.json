@@ -42,7 +42,10 @@
     "subtitle": "Sazinieties ar mani",
     "description": "Sazinieties ar mani, lai uzzinātu vairāk par koncertiem un sadarbību.",
     "phone": "Tālrunis",
-    "email": "E-pasts"
+    "email": "E-pasts",
+    "rider": "Tehniskais raiders",
+    "riderDescription": "Lejupielādējiet tehnisko raideri ar informāciju par nepieciešamo aprīkojumu koncertiem un uzstāšanās nosacījumiem.",
+    "riderDownload": "Lejupielādēt PDF"
   },
   "language": {
     "lv": "Latviešu",

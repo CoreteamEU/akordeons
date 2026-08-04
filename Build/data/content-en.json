@@ -42,7 +42,10 @@
     "subtitle": "Get in touch",
     "description": "Contact me to learn more about concerts and collaboration.",
     "phone": "Phone",
-    "email": "Email"
+    "email": "Email",
+    "rider": "Technical Rider",
+    "riderDescription": "Download the technical rider with equipment requirements and performance conditions for concerts.",
+    "riderDownload": "Download PDF"
   },
   "language": {
     "lv": "Latviešu",
