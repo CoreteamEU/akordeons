@@ -298,6 +298,23 @@ class MP3Player {
     this.currentTrackIndex = index;
     this.updateCurrentTrackInfo();
     this.updateActiveTrack();
+    this.trackPlayEvent(track);
+  }
+
+  /**
+   * Send a GA4 event for track playback (play count per track). Placed in
+   * loadTrack rather than play() so it fires exactly once per track
+   * selection - not on every pause/resume, which reuses the loaded src
+   * without calling loadTrack again. No-ops silently if analytics didn't
+   * load (e.g. blocked by an ad/tracker blocker).
+   */
+  trackPlayEvent(track) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'play_track', {
+      track_title: track.title,
+      track_filename: track.filename,
+      playlist_id: this.playlistId
+    });
   }
 
   /**

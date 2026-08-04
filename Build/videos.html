@@ -12,34 +12,34 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   
-  <!-- Version constant (load first) -->
-  <script src="js/version.js"></script>
+  <!-- Version constant (load first), fetched with a unique query string
+       on every load rather than a plain <script src>. A plain request
+       for this exact URL can be served straight from GitHub Pages'
+       CDN edge cache (10 min) even on a genuinely fresh page load, which
+       is the one request every other ?v=-tagged URL below depends on -
+       if this file is stale, everything built from its version number
+       is stale too. Fetch's cache:'no-store' would only stop the
+       browser's own cache from answering; the CDN edge sits in front of
+       that and keys purely on URL, so it could still serve its cached
+       copy. Appending a always-different value here forces a URL the
+       edge has never seen, which is a guaranteed miss through both
+       layers straight to origin. -->
+  <script>document.write('<scr' + 'ipt src="js/version.js?_=' + Date.now() + '"><\/scr' + 'ipt>');</script>
+
+  <!-- Stylesheets: written with document.write so the browser requests
+       the versioned URL from the start. Appending ?v= after the fact
+       (e.g. on DOMContentLoaded, the previous approach) is too late -
+       by then the browser has already fetched the unversioned URL, so
+       cache-busting silently lost that race on every page load. This
+       runs synchronously, before the parser reaches any resource tag
+       below it, so only the versioned URL is ever requested. -->
   <script>
-    // Auto-apply version to CSS and JS resources
     (function() {
-      const version = window.APP_VERSION || Date.now();
-      
-      // Update CSS links
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-          if (!link.href.includes('?v=')) {
-            link.href += (link.href.includes('?') ? '&' : '?') + 'v=' + version;
-          }
-        });
-        
-        // Update script tags (except version.js itself)
-        document.querySelectorAll('script[src]').forEach(script => {
-          if (script.src && !script.src.includes('?v=') && !script.src.includes('version.js')) {
-            script.src += (script.src.includes('?') ? '&' : '?') + 'v=' + version;
-          }
-        });
-      });
+      var v = window.APP_VERSION || Date.now();
+      document.write('<link rel="stylesheet" href="css/colors.css?v=' + v + '">');
+      document.write('<link rel="stylesheet" href="css/main.css?v=' + v + '">');
     })();
   </script>
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/colors.css">
-  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <!-- Header -->
@@ -100,11 +100,16 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/analytics.js"></script>
-  <script src="js/language.js"></script>
-  <script src="js/dark-mode.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Scripts: same document.write reasoning as the stylesheets above,
+       so these also always load the current version, not a cached one. -->
+  <script>
+    (function() {
+      var v = window.APP_VERSION || Date.now();
+      ['js/analytics.js', 'js/language.js', 'js/dark-mode.js', 'js/main.js'].forEach(function(src) {
+        document.write('<scr' + 'ipt src="' + src + '?v=' + v + '"><\/scr' + 'ipt>');
+      });
+    })();
+  </script>
   <script>
     // Load and display videos
     async function loadVideos() {

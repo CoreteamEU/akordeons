@@ -1,20 +1,31 @@
 /**
  * Analytics Tracking
- * Google Analytics and Facebook Pixel
+ * Google Analytics (GA4) and Facebook Pixel
  */
 
 (function() {
   'use strict';
 
-  // Google Analytics (Universal Analytics)
-  // Tracking ID: UA-51814773-1
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  // Google Analytics (GA4)
+  // Property: "akordeons.lv - GA4" (property ID 385988040)
+  // Measurement ID: G-PT9X9RX1C5
+  // Replaces the old Universal Analytics snippet (UA-51814773-1), which
+  // stopped collecting data when Google sunset UA on 2023-07-01.
+  var GA_MEASUREMENT_ID = 'G-PT9X9RX1C5';
 
-  ga('create', 'UA-51814773-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  // Exposed globally (not just in this closure) so other scripts, e.g.
+  // mp3-player.js tracking play counts, can send their own GA4 events.
+  window.gtag = gtag;
+
+  var gtagScript = document.createElement('script');
+  gtagScript.async = true;
+  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+  document.head.appendChild(gtagScript);
+
+  gtag('js', new Date());
+  gtag('config', GA_MEASUREMENT_ID);
 
   // Facebook SDK (optional - only if needed for social features)
   // App ID: 608558572495774
