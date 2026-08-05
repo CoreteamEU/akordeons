@@ -18,7 +18,8 @@
   "footer": {
     "copyright": "© {year} Аккордеонистка Evita Dūra",
     "phone": "+37129115951",
-    "email": "evita.duura@gmail.com"
+    "email": "evita.duura@gmail.com",
+    "facebook": "facebook.com/akordeonsLV"
   },
   "music": {
     "title": "Музыка",
@@ -43,6 +44,7 @@
     "description": "Свяжитесь со мной, чтобы узнать больше о концертах и сотрудничестве.",
     "phone": "Телефон",
     "email": "Электронная почта",
+    "facebook": "Facebook",
     "rider": "Райдер",
     "riderDescription": "Скачайте технический райдер с требованиями к оборудованию и условиями выступления на концертах.",
     "riderDownload": "Скачать PDF"

@@ -18,7 +18,8 @@
   "footer": {
     "copyright": "© {year} Akordeoniste Evita Dūra",
     "phone": "+37129115951",
-    "email": "evita.duura@gmail.com"
+    "email": "evita.duura@gmail.com",
+    "facebook": "facebook.com/akordeonsLV"
   },
   "music": {
     "title": "Mūzika",
@@ -43,6 +44,7 @@
     "description": "Sazinieties ar mani, lai uzzinātu vairāk par koncertiem un sadarbību.",
     "phone": "Tālrunis",
     "email": "E-pasts",
+    "facebook": "Facebook",
     "rider": "Tehniskais raiders",
     "riderDescription": "Lejupielādējiet tehnisko raideri ar informāciju par nepieciešamo aprīkojumu koncertiem un uzstāšanās nosacījumiem.",
     "riderDownload": "Lejupielādēt PDF"
