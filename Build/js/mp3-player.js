@@ -83,7 +83,7 @@ class MP3Player {
     const playerHTML = `
       <div class="mp3-player" data-playlist="${this.playlistId}">
         <div class="player-header">
-          <h3 class="player-title">${this.getLocalizedText('title')}</h3>
+          <h2 class="player-title">${this.getLocalizedText('title')}</h2>
           <p class="player-description">${this.getLocalizedText('description')}</p>
         </div>
         <div class="player-controls">

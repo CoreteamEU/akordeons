@@ -18,10 +18,10 @@
        version number across every Build/*.html file (and js/version.js)
        whenever anything under Build/ changes, so this still bumps
        automatically during local dev - see dev_server.py. -->
-  <script src="js/version.js?v=1786006650"></script>
-  <link rel="stylesheet" href="css/colors.css?v=1786006650">
-  <link rel="stylesheet" href="css/main.css?v=1786006650">
-  <link rel="stylesheet" href="css/player.css?v=1786006650">
+  <script src="js/version.js?v=1786015277"></script>
+  <link rel="stylesheet" href="css/colors.css?v=1786015277">
+  <link rel="stylesheet" href="css/main.css?v=1786015277">
+  <link rel="stylesheet" href="css/player.css?v=1786015277">
 </head>
 <body>
   <!-- Header -->
@@ -67,12 +67,12 @@
     <p data-i18n="music.description">Klausieties dažādus mūzikas ierakstus - solo, duetus un kvarteta Undertango kompozīcijas.</p>
     
     <!-- Playlist containers -->
-    <div id="playlist-solo"></div>
-    <div id="playlist-duets"></div>
-    <div id="playlist-kvartets_undertango"></div>
-    <div id="playlist-duo_violinist"></div>
-    <div id="playlist-undertango_live"></div>
-    <div id="playlist-undertango_collaborations"></div>
+    <div id="playlist-solo" class="playlist-slot" style="--tracks:8"></div>
+    <div id="playlist-duets" class="playlist-slot" style="--tracks:4"></div>
+    <div id="playlist-kvartets_undertango" class="playlist-slot" style="--tracks:10"></div>
+    <div id="playlist-duo_violinist" class="playlist-slot" style="--tracks:5"></div>
+    <div id="playlist-undertango_live" class="playlist-slot" style="--tracks:11"></div>
+    <div id="playlist-undertango_collaborations" class="playlist-slot" style="--tracks:5"></div>
   </main>
 
   <!-- Footer -->
@@ -89,11 +89,11 @@
 
   <!-- Scripts: versioned the same static way as the stylesheets in
        <head> - see the comment there for why. -->
-  <script src="js/analytics.js?v=1786006650"></script>
-  <script src="js/language.js?v=1786006650"></script>
-  <script src="js/dark-mode.js?v=1786006650"></script>
-  <script src="js/main.js?v=1786006650"></script>
-  <script src="js/mp3-player.js?v=1786006650"></script>
+  <script src="js/analytics.js?v=1786015277"></script>
+  <script src="js/language.js?v=1786015277"></script>
+  <script src="js/dark-mode.js?v=1786015277"></script>
+  <script src="js/main.js?v=1786015277"></script>
+  <script src="js/mp3-player.js?v=1786015277"></script>
   <script>
     // Initialize players when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {

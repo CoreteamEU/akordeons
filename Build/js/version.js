@@ -6,4 +6,4 @@
  *
  * Auto-updated by dev_server.py whenever a file under Build/ changes.
  */
-window.APP_VERSION = '1786006650';
+window.APP_VERSION = '1786015277';

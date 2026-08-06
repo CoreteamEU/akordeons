@@ -2,6 +2,37 @@
  * MP3 Player Styles
  */
 
+/* Each playlist container starts empty and is filled by mp3-player.js only
+   after its JSON loads. Without a reserved height that insertion pushes
+   everything below it down - measured at CLS 0.32 on desktop, the single
+   biggest thing dragging the Lighthouse score.
+   Rendered height is exactly (chrome + tracks x row height) and is
+   identical across all six playlists, so it can be reserved up front from
+   the track count. The constants are rounded slightly UP on purpose:
+   over-reserving costs a 1-3px sliver of whitespace and shifts nothing
+   (min-height simply keeps the box that tall), whereas under-reserving
+   lets the box grow on insert and puts the shift straight back.
+   --tracks is set per container in the HTML and kept in sync with the
+   JSON track counts automatically by dev_server.py. */
+.playlist-slot {
+  min-height: calc(216px + var(--tracks, 6) * 52.4px);
+  /* Matches .mp3-player's own margin-bottom so the gap between slots is
+     the same before and after they fill (the child's margin collapses
+     through the container, so these don't stack). */
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  /* No reservation here: row heights vary with title wrapping so an exact
+     figure isn't possible, and an inexact one would itself cause a shift.
+     The players also sit below the fold at this width, so their insertion
+     doesn't move anything actually on screen (mobile CLS already measures 0). */
+  .playlist-slot {
+    min-height: 0;
+    margin-bottom: 0;
+  }
+}
+
 .mp3-player {
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-border);

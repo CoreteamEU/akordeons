@@ -11,3 +11,4 @@ plan.md
 *.py
 !dev_server.py
 old_site/
+__pycache__/

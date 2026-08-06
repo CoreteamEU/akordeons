@@ -122,8 +122,19 @@ any batch of changes with real page-weight or loading impact — new images, add
 third-party scripts, CSS/JS restructuring. Do this without waiting to be asked; see
 the global `~/.claude/CLAUDE.md` for the general rule this follows.
 
-Baseline as of 2026-08-06, mobile: Performance 84 (Accessibility 98, Best Practices
-100, SEO 100). Known, already-addressed findings and what's actually fixable here:
+Baseline as of 2026-08-06 (pre-fix): Performance 84 on **both** mobile and desktop,
+but for completely different reasons — mobile was render-blocking/image weight with
+CLS 0, desktop had near-perfect loading (FCP/LCP 214ms, TBT 1ms) and was dragged down
+almost entirely by CLS 0.32. That divergence is exactly why both form factors must be
+checked every time.
+
+Known findings and what's actually fixable here:
+- **Layout shift (CLS)**: the six playlist containers and the videos grid start empty
+  and are filled by JS after their JSON loads, which pushes the page down. The
+  playlist containers now reserve their eventual height up front via `.playlist-slot`
+  (see `css/player.css`); `--tracks` on each container is auto-synced from the JSON
+  by `dev_server.py`, so don't hand-edit it. If you add a playlist container, give it
+  the same class and a `--tracks` value.
 - **Render-blocking / parallel loading**: every CSS/JS `<link>`/`<script>` tag must
   stay a static tag with `?v=` baked into the HTML (see `CACHE_BUSTING.md`) — don't
   reintroduce `document.write()`-based injection, it serializes every resource load
@@ -136,3 +147,11 @@ Baseline as of 2026-08-06, mobile: Performance 84 (Accessibility 98, Best Practi
 - **Unused JavaScript**: almost certainly Google Tag Manager's own bundle
   (`js/analytics.js`), not site code — don't try to trim it. Deferring *when* it
   loads (already done, via `window.load`) is the available fix, not its size.
+- **Heading order**: page content must go `h1` -> `h2` with no skipped level.
+  Player/video/contact-card titles are `h2` for this reason and are sized by class
+  rather than by tag, so don't "fix" them back to `h3` for visual reasons.
+- **Videos grid** still shows a small residual CLS (~0.02, inside Google's "good"
+  band of <0.1). Left as-is deliberately: the grid's column count is viewport
+  dependent and its card heights vary with title length, so any fixed reservation
+  would be wrong at some widths — and under-reserving reintroduces the shift while
+  over-reserving leaves permanent whitespace above the footer.

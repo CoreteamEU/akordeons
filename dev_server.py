@@ -19,6 +19,7 @@ across every Build/*.html file plus Build/js/version.js itself.
 """
 import functools
 import http.server
+import json
 import pathlib
 import re
 import threading
@@ -30,6 +31,28 @@ VERSION_JS = (BUILD / "js" / "version.js").resolve()
 PORT = 8080
 POLL_INTERVAL_SECONDS = 1.0
 VERSION_QUERY_RE = re.compile(r"\?v=\d+")
+TRACKS_VAR_RE = re.compile(r'(id="playlist-([a-z_]+)"[^>]*?--tracks:)\d+')
+
+
+def sync_playlist_track_counts(text):
+    """Keep each playlist container's --tracks in sync with its JSON.
+
+    The .playlist-slot CSS reserves the player's eventual height from this
+    number so filling the container doesn't shift the page (see
+    css/player.css). If it drifts out of sync with the actual track count
+    the reservation is wrong and the layout shift silently comes back, so
+    it's derived here rather than maintained by hand.
+    """
+    def replace(match):
+        playlist_id = match.group(2)
+        json_path = BUILD / "data" / f"{playlist_id}.json"
+        try:
+            count = len(json.loads(json_path.read_text())["tracks"])
+        except (OSError, ValueError, KeyError):
+            return match.group(0)  # leave as-is if the JSON isn't readable
+        return f"{match.group(1)}{count}"
+
+    return TRACKS_VAR_RE.sub(replace, text)
 
 
 def bump_version():
@@ -48,6 +71,7 @@ def bump_version():
     for html_file in BUILD.glob("*.html"):
         text = html_file.read_text()
         new_text = VERSION_QUERY_RE.sub(f"?v={version}", text)
+        new_text = sync_playlist_track_counts(new_text)
         if new_text != text:
             html_file.write_text(new_text)
     print(f"[dev_server] Build/ changed -> version={version}")
