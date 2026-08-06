@@ -1,7 +1,9 @@
 /**
  * Single version constant - update this one value to bust cache
- * This file is loaded first and used by all other scripts
+ * Used by language.js/mp3-player.js when fetching JSON content.
+ * The ?v= query strings on <link>/<script> tags in the HTML files
+ * are a separate copy of this same value, kept in sync below.
  *
  * Auto-updated by dev_server.py whenever a file under Build/ changes.
  */
-window.APP_VERSION = '1785931423';
+window.APP_VERSION = '1786006650';

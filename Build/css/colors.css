@@ -125,7 +125,7 @@ body {
   background-image:
     radial-gradient(var(--bg-dot-color) 1px, transparent 1px),
     linear-gradient(var(--bg-photo-tint), var(--bg-photo-tint)),
-    url("../images/background_small.jpg");
+    url("../images/background_small.webp");
   background-size:
     16px 16px,
     cover,

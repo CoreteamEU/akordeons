@@ -8,39 +8,19 @@
   <title data-i18n="videos.title">Video - Akordeoniste Evita Dūra</title>
   <link rel="icon" href="favicon.ico" sizes="any">
 
-  <!-- Prevent caching during development -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  
-  <!-- Version constant (load first), fetched with a unique query string
-       on every load rather than a plain <script src>. A plain request
-       for this exact URL can be served straight from GitHub Pages'
-       CDN edge cache (10 min) even on a genuinely fresh page load, which
-       is the one request every other ?v=-tagged URL below depends on -
-       if this file is stale, everything built from its version number
-       is stale too. Fetch's cache:'no-store' would only stop the
-       browser's own cache from answering; the CDN edge sits in front of
-       that and keys purely on URL, so it could still serve its cached
-       copy. Appending a always-different value here forces a URL the
-       edge has never seen, which is a guaranteed miss through both
-       layers straight to origin. -->
-  <script>document.write('<scr' + 'ipt src="js/version.js?_=' + Date.now() + '"><\/scr' + 'ipt>');</script>
-
-  <!-- Stylesheets: written with document.write so the browser requests
-       the versioned URL from the start. Appending ?v= after the fact
-       (e.g. on DOMContentLoaded, the previous approach) is too late -
-       by then the browser has already fetched the unversioned URL, so
-       cache-busting silently lost that race on every page load. This
-       runs synchronously, before the parser reaches any resource tag
-       below it, so only the versioned URL is ever requested. -->
-  <script>
-    (function() {
-      var v = window.APP_VERSION || Date.now();
-      document.write('<link rel="stylesheet" href="css/colors.css?v=' + v + '">');
-      document.write('<link rel="stylesheet" href="css/main.css?v=' + v + '">');
-    })();
-  </script>
+  <!-- Cache-busting: every resource below is a plain, static tag with
+       ?v=<version> baked directly into its href/src, not injected by JS
+       at request time. A static tag is visible to the browser's preload
+       scanner and loads in parallel with everything else; the previous
+       document.write-based approach was invisible to the preload scanner
+       and forced every file to load strictly one at a time (~1.7s of
+       measured render-blocking delay). dev_server.py rewrites this
+       version number across every Build/*.html file (and js/version.js)
+       whenever anything under Build/ changes, so this still bumps
+       automatically during local dev - see dev_server.py. -->
+  <script src="js/version.js?v=1786006650"></script>
+  <link rel="stylesheet" href="css/colors.css?v=1786006650">
+  <link rel="stylesheet" href="css/main.css?v=1786006650">
 </head>
 <body>
   <!-- Header -->
@@ -102,16 +82,12 @@
     </div>
   </footer>
 
-  <!-- Scripts: same document.write reasoning as the stylesheets above,
-       so these also always load the current version, not a cached one. -->
-  <script>
-    (function() {
-      var v = window.APP_VERSION || Date.now();
-      ['js/analytics.js', 'js/language.js', 'js/dark-mode.js', 'js/main.js'].forEach(function(src) {
-        document.write('<scr' + 'ipt src="' + src + '?v=' + v + '"><\/scr' + 'ipt>');
-      });
-    })();
-  </script>
+  <!-- Scripts: versioned the same static way as the stylesheets in
+       <head> - see the comment there for why. -->
+  <script src="js/analytics.js?v=1786006650"></script>
+  <script src="js/language.js?v=1786006650"></script>
+  <script src="js/dark-mode.js?v=1786006650"></script>
+  <script src="js/main.js?v=1786006650"></script>
   <script>
     // Load and display videos
     async function loadVideos() {

@@ -39,7 +39,7 @@ Dev URL target: `https://coreteameu.github.io/akordeons/`.
 - **All links must be relative to site root** — no absolute URLs to the site's own pages/assets.
 - **Text content only comes from the JSON files**, never hardcoded in HTML/JS, except as a fallback/placeholder value already baked into the markup.
 - Color scheme lives only in `Build/css/colors.css`, as CSS variables. Don't hardcode colors in `main.css`/`player.css`.
-- No caching during development: the cache-control meta tags and `version.js` query-param busting in every HTML `<head>` are intentional — don't remove them without being asked.
+- Cache-busting is intentional and load-bearing: every CSS/JS `<link>`/`<script>` tag carries a static `?v=<version>` baked into the HTML (see `CACHE_BUSTING.md`) — don't remove the query params, and don't reintroduce `document.write()`-based injection (tried once; it's invisible to the browser's preload scanner and serializes every resource load, measured at ~1.7s of render-blocking delay on this site). The dev-only `Cache-Control`/`Pragma`/`Expires` meta tags that used to sit alongside this were removed (they don't affect real HTTP caching anyway — meta http-equiv cache directives are largely ignored by browsers) but the `?v=` mechanism itself must stay.
 - Comment code only where the *why* isn't obvious (matches the general project convention, and plan.md explicitly asks for comments "where it makes sense" — not everywhere).
 - Each implementation step should be small, testable, and land as its own commit reviewed by the user manually — don't bundle unrelated changes.
 - **Never translate or transliterate "Evita Dūra"** (the accordionist's name) in any language's content JSON — it stays in Latin script exactly as written, even in `content-ru.json`. "Эвита Дуура" is wrong. This applies to the standalone first name "Evita" too, not just the full "Evita Dūra".
@@ -85,14 +85,17 @@ python3 dev_server.py
 ```
 
 This serves `Build/` at `http://localhost:8080/` **and** watches every file under
-`Build/` (polling every second) except `js/version.js` itself — any change auto-bumps
-`window.APP_VERSION` to a fresh timestamp, so edits to content/CSS/JS/HTML show up on
-the next browser reload with no manual cache-busting step. (`.vscode/launch.json` also
-has a "Launch Chrome against localhost" debug config that runs this task automatically.)
-`dev_server.py` is gitignored (matches the existing `*.py` pattern for `crawl_site.py`/
-`organize_mp3.py`) — it's local dev tooling, not deployed and not currently tracked in
-git; if that's ever a problem (e.g. a fresh clone/session needs it), it'll need an
-explicit `.gitignore` exception.
+`Build/` (polling every second, except `js/version.js` and the `Build/*.html` files
+themselves, which it writes to) — any change auto-bumps `window.APP_VERSION` in
+`version.js` and rewrites the matching `?v=` query strings across every HTML file, so
+edits to content/CSS/JS/HTML show up on the next browser reload with no manual
+cache-busting step (see `CACHE_BUSTING.md`). (`.vscode/launch.json` also has a "Launch
+Chrome against localhost" debug config that runs this task automatically.)
+`dev_server.py` is tracked in git (unlike `crawl_site.py`/`organize_mp3.py`, which stay
+gitignored per the general `*.py` pattern — this file has an explicit exception in
+`.gitignore`) since it's part of the site's normal dev workflow, not a one-off crawl
+script, and the version numbers it bakes into `Build/*.html`/`version.js` need to be
+committed for a deploy to have a correct cache-busting version at all.
 
 Plain `file://` opens will NOT work correctly — the site loads content via `fetch()`
 (the `content-*.json`, playlist JSON, `videos.json`), which is blocked by CORS on
@@ -109,3 +112,27 @@ Per plan.md, before treating a change as done, manually check:
 - Analytics script loads without error (can't verify tracking hits without access to the analytics dashboard)
 
 There is no automated test suite — all verification above is manual, in-browser.
+
+## Performance
+
+Periodically re-check the deployed site (not local dev — that has no real network
+latency/caching to measure) at
+https://pagespeed.web.dev/analysis/https-akordeons-lv, both mobile and desktop, after
+any batch of changes with real page-weight or loading impact — new images, added
+third-party scripts, CSS/JS restructuring. Do this without waiting to be asked; see
+the global `~/.claude/CLAUDE.md` for the general rule this follows.
+
+Baseline as of 2026-08-06, mobile: Performance 84 (Accessibility 98, Best Practices
+100, SEO 100). Known, already-addressed findings and what's actually fixable here:
+- **Render-blocking / parallel loading**: every CSS/JS `<link>`/`<script>` tag must
+  stay a static tag with `?v=` baked into the HTML (see `CACHE_BUSTING.md`) — don't
+  reintroduce `document.write()`-based injection, it serializes every resource load
+  and was measured at ~1.7s of render-blocking delay.
+- **Image weight**: prefer WebP over JPEG for photos (`sips`/PIL, no extra deps
+  needed beyond what's already used elsewhere in this repo's tooling).
+- **Cache lifetimes**: GitHub Pages fixes `Cache-Control: max-age=600` on every
+  response and doesn't support custom headers — this finding is not fixable from
+  the repo. Don't spend time chasing it; reducing asset size is the only real lever.
+- **Unused JavaScript**: almost certainly Google Tag Manager's own bundle
+  (`js/analytics.js`), not site code — don't try to trim it. Deferring *when* it
+  loads (already done, via `window.load`) is the available fix, not its size.

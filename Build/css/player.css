@@ -192,15 +192,6 @@
   font-weight: 600;
 }
 
-/* De-emphasised, tabular so the numbers form a clean column */
-.track-number {
-  color: var(--color-text-tertiary);
-  font-size: 0.875rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 2rem;
-  text-align: right;
-}
-
 .track-title {
   flex: 1;
   color: var(--color-text-primary);
@@ -255,6 +246,13 @@
 
   .track-title {
     flex-basis: 100%;
+  }
+
+  /* Not enough room to earn their keep at this width - track length and
+     the seek/progress bar (time-info still shows elapsed/total time). */
+  .track-duration,
+  .player-progress {
+    display: none;
   }
 }
 

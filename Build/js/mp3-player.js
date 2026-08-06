@@ -175,7 +175,6 @@ class MP3Player {
       const duration = `${track.duration.minutes}:${String(track.duration.seconds).padStart(2, '0')}`;
       return `
         <li class="track-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-          <span class="track-number">${index + 1}.</span>
           <span class="track-title">${track.title}</span>
           <span class="track-duration">${duration}</span>
         </li>
