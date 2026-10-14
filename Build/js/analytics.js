@@ -1,6 +1,7 @@
 /**
  * Analytics Tracking
- * Google Analytics (GA4) and Facebook Pixel
+ * Google Analytics (GA4), loaded only with the visitor's "analytics" consent
+ * (see consent.js, which must load first).
  */
 
 (function() {
@@ -13,47 +14,82 @@
   // stopped collecting data when Google sunset UA on 2023-07-01.
   var GA_MEASUREMENT_ID = 'G-PT9X9RX1C5';
 
+  var consent = window.akordeonsConsent;
+  function hasAnalyticsConsent() {
+    return !!(consent && consent.has('analytics'));
+  }
+
   window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  // Exposed globally (not just in this closure) so other scripts, e.g.
-  // mp3-player.js tracking play counts, can send their own GA4 events.
-  // Safe to call before the real gtag.js has loaded - calls just queue
-  // in dataLayer and get processed once it arrives.
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID);
+  function pushToDataLayer() { window.dataLayer.push(arguments); }
 
-  // The gtag.js bundle itself (~150KB, entirely Google's own code) is
-  // fetched only after the page has finished loading, so it can't compete
-  // with the site's own CSS/JS/images for bandwidth or main-thread time
-  // during the initial render. Queued gtag() calls above still fire
-  // correctly once it arrives - nothing is lost by waiting.
-  function loadGtagScript() {
-    var gtagScript = document.createElement('script');
-    gtagScript.async = true;
-    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
-    document.head.appendChild(gtagScript);
-  }
-  if (document.readyState === 'complete') {
-    loadGtagScript();
-  } else {
-    window.addEventListener('load', loadGtagScript);
+  // Exposed globally so other scripts (e.g. mp3-player.js play/share
+  // events) can call it at any time. Events without consent are dropped,
+  // not queued, so they can never be sent retroactively after opting in.
+  window.gtag = function() {
+    if (arguments[0] === 'event' && !hasAnalyticsConsent()) return;
+    pushToDataLayer.apply(null, arguments);
+  };
+
+  // Google Consent Mode v2: everything denied until the visitor opts in.
+  pushToDataLayer('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  var gaStarted = false;
+
+  // The gtag.js bundle (~150KB, entirely Google's own code) is fetched only
+  // after the page has finished loading, so it can't compete with the
+  // site's own CSS/JS/images during the initial render.
+  function startAnalytics() {
+    pushToDataLayer('consent', 'update', { analytics_storage: 'granted' });
+    if (gaStarted) return;
+    gaStarted = true;
+    pushToDataLayer('js', new Date());
+    pushToDataLayer('config', GA_MEASUREMENT_ID);
+
+    function loadGtagScript() {
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(gtagScript);
+    }
+    if (document.readyState === 'complete') {
+      loadGtagScript();
+    } else {
+      window.addEventListener('load', loadGtagScript);
+    }
   }
 
-  // Facebook SDK (optional - only if needed for social features)
-  // App ID: 608558572495774
-  // Note: Only load if Facebook features are needed
-  // Uncomment if needed:
-  /*
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/lv_LV/sdk.js#xfbml=1&appId=608558572495774&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-  })(document, 'script', 'facebook-jssdk');
-  */
+  function clearAnalyticsCookies() {
+    var host = window.location.hostname || '';
+    var domains = ['', host, '.' + host];
+    var parts = host.split('.');
+    if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+
+    document.cookie.split(';').forEach(function(c) {
+      var name = c.split('=')[0].trim();
+      if (/^_ga|^_gid|^_gat/.test(name)) {
+        domains.forEach(function(domain) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/' + (domain ? '; domain=' + domain : '');
+        });
+      }
+    });
+  }
+
+  function applyConsent() {
+    if (hasAnalyticsConsent()) {
+      startAnalytics();
+    } else {
+      // Already-loaded gtag.js can't be unloaded; denying storage stops it
+      // writing cookies and clearing them removes the identifier.
+      if (gaStarted) pushToDataLayer('consent', 'update', { analytics_storage: 'denied' });
+      clearAnalyticsCookies();
+    }
+  }
+
+  applyConsent();
+  if (consent) consent.onChange(applyConsent);
 })();
-
-
-

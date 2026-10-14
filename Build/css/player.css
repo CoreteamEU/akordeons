@@ -75,7 +75,7 @@
 
 .player-btn {
   background-color: var(--color-accent-primary);
-  color: white;
+  color: var(--color-on-accent);
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;

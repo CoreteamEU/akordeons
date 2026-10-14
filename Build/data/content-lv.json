@@ -66,7 +66,52 @@
     "shareCopied": "Saite nokopēta",
     "openPlaylist": "Visi ieraksti",
     "notFound": "Ieraksts nav atrasts"
+  },
+  "consent": {
+    "bannerLabel": "Sīkdatņu izmantošanas paziņojums",
+    "bannerTitle": "Sīkdatņu izmantošana",
+    "bannerText": "Ar jūsu piekrišanu izmantosim Google Analytics apmeklējumu statistikai un ielādēsim YouTube video, kas var saglabāt sīkdatnes. Dati var tikt nosūtīti uz ASV. Izvēli var mainīt jebkurā brīdī. <a href=\"privacy.html\">Privātuma politika</a>",
+    "acceptAll": "Piekrist visām",
+    "rejectAll": "Noraidīt neobligātās",
+    "customize": "Pielāgot",
+    "settingsTitle": "Sīkdatņu iestatījumi",
+    "settingsIntro": "Jūs varat izvēlēties, kuras neobligātās kategorijas atļaut. Izvēli var mainīt vai atsaukt jebkurā brīdī, un tā tiek saglabāta 12 mēnešus. Sīkāk: <a href=\"privacy.html\">Privātuma politika</a>.",
+    "close": "Aizvērt",
+    "necessaryName": "Nepieciešamās",
+    "alwaysOn": "Vienmēr aktīvas",
+    "necessaryDesc": "Jūsu sīkdatņu izvēle, valoda un gaišā/tumšā režīma izvēle tiek saglabāta tikai šī pārlūka lokālajā krātuvē. Tā netiek nosūtīta mums vai trešajām pusēm.",
+    "analyticsName": "Analītika",
+    "analyticsDesc": "Apkopo statistiku par apmeklējumiem, skatītajām lapām un audio ierakstu atskaņošanu. Tiek izmantotas sīkdatnes <code>_ga</code>, <code>_ga_PT9X9RX1C5</code> (glabāšanas laiks līdz 2 gadiem) ar pseidonīmu pārlūka identifikatoru. Datus apstrādā Google Ireland Ltd.; tie var tikt nosūtīti uz ASV (Google LLC).",
+    "mediaName": "Ārējie video",
+    "mediaDesc": "Ļauj automātiski ielādēt YouTube video sadaļā “Video”. YouTube (Google) var saglabāt sīkdatnes un savākt datus par jūsu pārlūku un skatīšanos. Bez šīs atļaujas katru video var ielādēt atsevišķi ar klikšķi.",
+    "save": "Saglabāt izvēli",
+    "allowAll": "Atļaut visas",
+    "rejectAllShort": "Noraidīt visas",
+    "settingsLink": "Sīkdatņu iestatījumi",
+    "privacyLink": "Privātuma politika"
+  },
+  "videoConsent": {
+    "text": "Video tiek rādīts no YouTube. Ielādējot to, YouTube (Google) var saglabāt sīkdatnes un savākt datus par jūsu pārlūku. <a href=\"privacy.html\">Privātuma politika</a>",
+    "load": "Ielādēt video",
+    "loadAll": "Vienmēr rādīt YouTube video"
+  },
+  "privacy": {
+    "pageTitle": "Privātuma politika - Akordeoniste Evita Dūra",
+    "title": "Privātuma politika",
+    "effective": "Spēkā no 2026. gada 14. oktobra.",
+    "controllerTitle": "Pārzinis",
+    "controllerText": "Personas datu pārzine ir akordeoniste Evita Dūra, vietnes akordeons.lv īpašniece. Jautājumos par personas datiem rakstiet uz <a href=\"mailto:evita.duura@gmail.com\">evita.duura@gmail.com</a>.",
+    "dataTitle": "Kādus datus apstrādājam",
+    "hosting": "<strong>Vietnes mitināšana.</strong> Vietni mitina GitHub Pages (GitHub, Inc., ASV). Lai piegādātu lapas, GitHub apstrādā jūsu IP adresi un tehniskos pieprasījuma datus un var tos uz īsu laiku saglabāt drošības nolūkos. Tiesiskais pamats: leģitīmās intereses nodrošināt vietnes darbību (VDAR 6. panta 1. punkta f) apakšpunkts).",
+    "storage": "<strong>Iestatījumi pārlūkā.</strong> Jūsu sīkdatņu izvēle (12 mēneši), valoda un gaišā/tumšā režīma izvēle tiek saglabāta tikai jūsu pārlūka lokālajā krātuvē un netiek nosūtīta mums.",
+    "analytics": "<strong>Apmeklējumu statistika (tikai ar piekrišanu).</strong> Google Analytics apkopo datus par apmeklētajām lapām, audio ierakstu atskaņošanu un kopīgošanu, ierīci, pārlūku un aptuveno atrašanās vietu. Tiek izmantotas sīkdatnes <code>_ga</code>, <code>_ga_PT9X9RX1C5</code> (līdz 2 gadiem). Tiesiskais pamats: jūsu piekrišana (VDAR 6. panta 1. punkta a) apakšpunkts).",
+    "youtube": "<strong>YouTube video (tikai ar piekrišanu vai pēc klikšķa).</strong> Video sadaļā “Video” tiek ielādēti no YouTube (Google) tikai tad, kad to atļaujat. Pēc ielādes YouTube var saglabāt sīkdatnes un apstrādāt datus saskaņā ar <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google privātuma politiku</a>.",
+    "email": "<strong>Saziņa.</strong> Ja rakstāt e-pastu vai zvanāt, jūsu kontaktinformāciju un ziņas saturu izmantojam tikai atbildei un sadarbībai.",
+    "transferTitle": "Datu nosūtīšana ārpus ES",
+    "transferText": "Google un GitHub var apstrādāt datus ASV. Šādu nosūtīšanu aizsargā ES–ASV Datu privātuma regulējums vai Eiropas Komisijas līguma standartklauzulas.",
+    "changeTitle": "Piekrišanas maiņa",
+    "changeText": "Piekrišanu var mainīt vai atsaukt jebkurā brīdī: <button type=\"button\" class=\"cookie-footer-link\" data-cookie-settings>atvērt sīkdatņu iestatījumus</button>. Atsaukums neietekmē iepriekš veiktās apstrādes likumību.",
+    "rightsTitle": "Jūsu tiesības",
+    "rightsText": "Jums ir tiesības piekļūt saviem datiem, tos labot vai dzēst, ierobežot apstrādi, iebilst pret apstrādi un saņemt datus pārnesamā formātā. Ja uzskatāt, ka jūsu dati tiek apstrādāti nelikumīgi, varat iesniegt sūdzību Datu valsts inspekcijai (<a href=\"https://www.dvi.gov.lv\" target=\"_blank\" rel=\"noopener\">www.dvi.gov.lv</a>)."
   }
 }
-
-

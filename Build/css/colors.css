@@ -37,6 +37,11 @@
      ~2.4:1, so dark mode swaps this to the brass gold instead. */
   --color-accent-text: #8c2f39;
 
+  /* Text on --color-accent-primary fills, and the dimmed backdrop behind
+     the cookie settings dialog. */
+  --color-on-accent: #ffffff;
+  --color-overlay: rgba(36, 26, 28, 0.55);
+
   /* Status colors */
   --color-success: #3f7350;
   --color-error: #b3392c;
@@ -88,6 +93,9 @@
   --color-accent-wash: rgba(178, 58, 71, 0.14);
 
   --color-accent-text: #d9a441;
+
+  --color-on-accent: #ffffff;
+  --color-overlay: rgba(0, 0, 0, 0.65);
 
   /* Status colors (adjusted for dark mode) */
   --color-success: #6aa87c;

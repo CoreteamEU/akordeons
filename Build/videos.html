@@ -18,9 +18,9 @@
        version number across every Build/*.html file (and js/version.js)
        whenever anything under Build/ changes, so this still bumps
        automatically during local dev - see dev_server.py. -->
-  <script src="js/version.js?v=1786015277"></script>
-  <link rel="stylesheet" href="css/colors.css?v=1786015277">
-  <link rel="stylesheet" href="css/main.css?v=1786015277">
+  <script src="js/version.js?v=1791958383"></script>
+  <link rel="stylesheet" href="css/colors.css?v=1791958383">
+  <link rel="stylesheet" href="css/main.css?v=1791958383">
 </head>
 <body>
   <!-- Header -->
@@ -79,15 +79,20 @@
         <a href="https://www.facebook.com/akordeonsLV" target="_blank" rel="noopener noreferrer" class="contact-link"><svg class="icon-facebook" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg><span data-i18n="footer.facebook">facebook.com/akordeonsLV</span></a>
       </div>
       <div class="footer-copyright" data-i18n="footer.copyright">© Akordeoniste Evita Dūra</div>
+      <div class="footer-legal">
+        <a href="privacy.html" data-i18n="consent.privacyLink">Privātuma politika</a>
+        <button type="button" class="cookie-footer-link" data-cookie-settings data-i18n="consent.settingsLink">Sīkdatņu iestatījumi</button>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts: versioned the same static way as the stylesheets in
        <head> - see the comment there for why. -->
-  <script src="js/analytics.js?v=1786015277"></script>
-  <script src="js/language.js?v=1786015277"></script>
-  <script src="js/dark-mode.js?v=1786015277"></script>
-  <script src="js/main.js?v=1786015277"></script>
+  <script src="js/consent.js?v=1791958383"></script>
+  <script src="js/analytics.js?v=1791958383"></script>
+  <script src="js/language.js?v=1791958383"></script>
+  <script src="js/dark-mode.js?v=1791958383"></script>
+  <script src="js/main.js?v=1791958383"></script>
   <script>
     // Load and display videos
     async function loadVideos() {
@@ -106,33 +111,89 @@
       }
     }
 
+    // YouTube is only contacted after consent: per video on click, or for
+    // all videos once the "media" category is granted (see js/consent.js).
+    function hasMediaConsent() {
+      return !!(window.akordeonsConsent && window.akordeonsConsent.has('media'));
+    }
+
+    function escapeAttr(value) {
+      return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    function placeholderHTML() {
+      return `
+        <div class="video-consent">
+          <p data-i18n="videoConsent.text" data-i18n-html>Video tiek rādīts no YouTube. Ielādējot to, YouTube (Google) var saglabāt sīkdatnes un savākt datus par jūsu pārlūku. <a href="privacy.html">Privātuma politika</a></p>
+          <div class="cookie-actions">
+            <button type="button" class="cookie-btn cookie-btn-primary" data-video-load data-i18n="videoConsent.load">Ielādēt video</button>
+            <button type="button" class="cookie-btn" data-video-load-all data-i18n="videoConsent.loadAll">Vienmēr rādīt YouTube video</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function loadVideo(wrapper) {
+      if (wrapper.querySelector('iframe')) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(wrapper.dataset.videoId)}`;
+      iframe.title = wrapper.dataset.videoTitle || 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      wrapper.innerHTML = '';
+      wrapper.appendChild(iframe);
+    }
+
     function renderVideos(videos) {
       const container = document.getElementById('videos-container');
       if (!container || !videos) return;
 
-      container.innerHTML = videos.map(video => {
-        const embedUrl = `https://www.youtube.com/embed/${video.id}`;
-        const thumbnailUrl = video.thumbnail || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`;
-        
-        return `
+      container.innerHTML = videos.map(video => `
           <div class="video-item">
-            <div class="video-wrapper">
-              <iframe 
-                src="${embedUrl}" 
-                title="${video.title}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                loading="lazy">
-              </iframe>
+            <div class="video-wrapper" data-video-id="${escapeAttr(video.id)}" data-video-title="${escapeAttr(video.title)}">
+              ${placeholderHTML()}
             </div>
             <div class="video-info">
               <h2 class="video-title">${video.title}</h2>
               ${video.description ? `<p class="video-description">${video.description}</p>` : ''}
             </div>
           </div>
-        `;
-      }).join('');
+        `).join('');
+
+      if (hasMediaConsent()) {
+        container.querySelectorAll('.video-wrapper[data-video-id]').forEach(loadVideo);
+      } else if (typeof languageManager !== 'undefined' && languageManager && languageManager.content) {
+        languageManager.updatePageContent();
+      }
+
+      container.addEventListener('click', (e) => {
+        const wrapper = e.target.closest('.video-wrapper[data-video-id]');
+        if (!wrapper) return;
+        if (e.target.closest('[data-video-load]')) {
+          loadVideo(wrapper);
+        } else if (e.target.closest('[data-video-load-all]') && window.akordeonsConsent) {
+          window.akordeonsConsent.grant('media');
+        }
+      });
+    }
+
+    if (window.akordeonsConsent) {
+      window.akordeonsConsent.onChange(() => {
+        const container = document.getElementById('videos-container');
+        if (!container) return;
+        container.querySelectorAll('.video-wrapper[data-video-id]').forEach(wrapper => {
+          if (hasMediaConsent()) {
+            loadVideo(wrapper);
+          } else if (wrapper.querySelector('iframe')) {
+            wrapper.innerHTML = placeholderHTML();
+          }
+        });
+        if (!hasMediaConsent() && typeof languageManager !== 'undefined' && languageManager && languageManager.content) {
+          languageManager.updatePageContent();
+        }
+      });
     }
 
     // Load videos when DOM is ready
@@ -164,6 +225,24 @@
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
       height: 0;
       overflow: hidden;
+    }
+
+    .video-consent {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background-color: var(--color-bg-tertiary);
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      overflow: auto;
+    }
+
+    .video-consent p {
+      margin: 0;
     }
 
     .video-wrapper iframe {

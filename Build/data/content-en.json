@@ -66,7 +66,52 @@
     "shareCopied": "Link copied",
     "openPlaylist": "All recordings",
     "notFound": "Recording not found"
+  },
+  "consent": {
+    "bannerLabel": "Cookie notice",
+    "bannerTitle": "Use of cookies",
+    "bannerText": "With your consent we will use Google Analytics for visitor statistics and load YouTube videos, which may set cookies. Data may be transferred to the USA. You can change your choice at any time. <a href=\"privacy.html\">Privacy policy</a>",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject optional",
+    "customize": "Customize",
+    "settingsTitle": "Cookie settings",
+    "settingsIntro": "Choose which optional categories to allow. You can change or withdraw your choice at any time; it is kept for 12 months. More: <a href=\"privacy.html\">Privacy policy</a>.",
+    "close": "Close",
+    "necessaryName": "Necessary",
+    "alwaysOn": "Always on",
+    "necessaryDesc": "Your cookie choice, language and light/dark mode are stored only in this browser’s local storage. They are not sent to us or to third parties.",
+    "analyticsName": "Analytics",
+    "analyticsDesc": "Collects statistics on visits, pages viewed and audio playback. Uses the cookies <code>_ga</code>, <code>_ga_PT9X9RX1C5</code> (kept for up to 2 years) with a pseudonymous browser identifier. Data is processed by Google Ireland Ltd. and may be transferred to the USA (Google LLC).",
+    "mediaName": "External videos",
+    "mediaDesc": "Loads YouTube videos on the “Videos” page automatically. YouTube (Google) may set cookies and collect data about your browser and viewing. Without this permission each video can be loaded individually with a click.",
+    "save": "Save choice",
+    "allowAll": "Allow all",
+    "rejectAllShort": "Reject all",
+    "settingsLink": "Cookie settings",
+    "privacyLink": "Privacy policy"
+  },
+  "videoConsent": {
+    "text": "This video is served by YouTube. When it loads, YouTube (Google) may set cookies and collect data about your browser. <a href=\"privacy.html\">Privacy policy</a>",
+    "load": "Load video",
+    "loadAll": "Always show YouTube videos"
+  },
+  "privacy": {
+    "pageTitle": "Privacy policy - Accordionist Evita Dūra",
+    "title": "Privacy policy",
+    "effective": "Effective from 14 October 2026.",
+    "controllerTitle": "Controller",
+    "controllerText": "The controller of personal data is accordionist Evita Dūra, owner of akordeons.lv. For questions about personal data write to <a href=\"mailto:evita.duura@gmail.com\">evita.duura@gmail.com</a>.",
+    "dataTitle": "What data we process",
+    "hosting": "<strong>Hosting.</strong> The site is hosted on GitHub Pages (GitHub, Inc., USA). To deliver pages, GitHub processes your IP address and technical request data and may keep them briefly for security purposes. Legal basis: legitimate interest in operating the website (GDPR Art. 6(1)(f)).",
+    "storage": "<strong>Settings in your browser.</strong> Your cookie choice (12 months), language and light/dark mode are stored only in your browser’s local storage and are not sent to us.",
+    "analytics": "<strong>Visitor statistics (only with consent).</strong> Google Analytics collects data on pages visited, audio playback and sharing, device, browser and approximate location. Uses the cookies <code>_ga</code>, <code>_ga_PT9X9RX1C5</code> (up to 2 years). Legal basis: your consent (GDPR Art. 6(1)(a)).",
+    "youtube": "<strong>YouTube videos (only with consent or after a click).</strong> Videos on the “Videos” page are loaded from YouTube (Google) only once you allow it. After loading, YouTube may set cookies and process data under the <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google privacy policy</a>.",
+    "email": "<strong>Contact.</strong> If you email or call, your contact details and the content of your message are used only to reply and to arrange work together.",
+    "transferTitle": "Transfers outside the EU",
+    "transferText": "Google and GitHub may process data in the USA. Such transfers are covered by the EU–US Data Privacy Framework or the European Commission’s standard contractual clauses.",
+    "changeTitle": "Changing your consent",
+    "changeText": "You can change or withdraw consent at any time: <button type=\"button\" class=\"cookie-footer-link\" data-cookie-settings>open cookie settings</button>. Withdrawal does not affect the lawfulness of processing carried out before it.",
+    "rightsTitle": "Your rights",
+    "rightsText": "You have the right to access, rectify or erase your data, to restrict or object to processing, and to receive your data in a portable format. If you believe your data is processed unlawfully, you can lodge a complaint with the Latvian Data State Inspectorate (<a href=\"https://www.dvi.gov.lv\" target=\"_blank\" rel=\"noopener\">www.dvi.gov.lv</a>)."
   }
 }
-
-
