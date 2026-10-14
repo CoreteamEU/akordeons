@@ -31,10 +31,19 @@ class MP3Player {
   /**
    * Initialize player
    */
-  async init() {
-    await this.loadPlaylist();
-    this.createPlayerUI();
-    this.setupAudio();
+  init() {
+    // Playlists fetch in parallel but render strictly in creation (page)
+    // order. On mobile the slots reserve no height, so a later playlist
+    // rendering first would be pushed down when an earlier one fills in
+    // (measured at CLS 0.37 on PageSpeed mobile).
+    const loaded = this.loadPlaylist();
+    MP3Player.renderQueue = (MP3Player.renderQueue || Promise.resolve())
+      .then(() => loaded)
+      .then(() => {
+        this.createPlayerUI();
+        this.setupAudio();
+      })
+      .catch(error => console.error('Error rendering player:', error));
   }
 
   /**
