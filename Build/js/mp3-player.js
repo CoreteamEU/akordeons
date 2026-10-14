@@ -108,7 +108,9 @@ class MP3Player {
           </div>
         </div>
         <div class="player-progress">
-          <div class="progress-bar">
+          <div class="progress-bar" role="slider" tabindex="0"
+               aria-label="${this.t('seek', 'Seek')}"
+               aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="00:00">
             <div class="progress-fill"></div>
           </div>
         </div>
@@ -155,6 +157,10 @@ class MP3Player {
     }
     if (volumeSlider) {
       volumeSlider.setAttribute('aria-label', this.t('volume', 'Volume'));
+    }
+    const progressBar = this.container.querySelector('.progress-bar');
+    if (progressBar) {
+      progressBar.setAttribute('aria-label', this.t('seek', 'Seek'));
     }
 
     // If playback errored out, the error message should also relocalize.
@@ -207,6 +213,8 @@ class MP3Player {
       });
     }
 
+    this.setupSeek();
+
     trackItems.forEach(item => {
       item.addEventListener('click', () => {
         const index = parseInt(item.getAttribute('data-index'));
@@ -216,13 +224,88 @@ class MP3Player {
   }
 
   /**
+   * Click/tap or drag on the progress bar jumps to that point in the track;
+   * arrow/Home/End keys seek when it has focus.
+   */
+  setupSeek() {
+    const bar = this.container.querySelector('.progress-bar');
+    if (!bar) return;
+
+    const ratioAt = (clientX) => {
+      const rect = bar.getBoundingClientRect();
+      return rect.width ? Math.min(1, Math.max(0, (clientX - rect.left) / rect.width)) : 0;
+    };
+
+    bar.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      bar.setPointerCapture(e.pointerId);
+      this.seekToRatio(ratioAt(e.clientX));
+      const onMove = (ev) => this.seekToRatio(ratioAt(ev.clientX));
+      const onUp = () => {
+        bar.removeEventListener('pointermove', onMove);
+        bar.removeEventListener('pointerup', onUp);
+        bar.removeEventListener('pointercancel', onUp);
+      };
+      bar.addEventListener('pointermove', onMove);
+      bar.addEventListener('pointerup', onUp);
+      bar.addEventListener('pointercancel', onUp);
+    });
+
+    bar.addEventListener('keydown', (e) => {
+      if (!this.audio || !this.audio.duration) return;
+      const step = { ArrowRight: 5, ArrowUp: 5, ArrowLeft: -5, ArrowDown: -5 }[e.key];
+      if (step !== undefined) {
+        this.seekToTime(this.audio.currentTime + step);
+      } else if (e.key === 'Home') {
+        this.seekToTime(0);
+      } else if (e.key === 'End') {
+        this.seekToTime(this.audio.duration - 0.5);
+      } else {
+        return;
+      }
+      e.preventDefault();
+    });
+  }
+
+  /**
+   * Seek to a fraction (0..1) of the current track. If nothing is loaded yet,
+   * the current track is loaded and started from that point once its
+   * duration is known.
+   */
+  seekToRatio(ratio) {
+    if (!this.playlist || !this.audio) return;
+    if (!this.audio.src) {
+      this.loadTrack(this.currentTrackIndex);
+      this.audio.addEventListener('loadedmetadata', () => {
+        this.seekToTime(ratio * this.audio.duration);
+      }, { once: true });
+      this.play();
+      return;
+    }
+    if (this.audio.duration) {
+      this.seekToTime(ratio * this.audio.duration);
+    }
+  }
+
+  seekToTime(seconds) {
+    if (!this.audio || !this.audio.duration) return;
+    this.audio.currentTime = Math.min(this.audio.duration, Math.max(0, seconds));
+    this.updateProgress();
+    this.updateTimeInfo();
+  }
+
+  /**
    * Setup audio element
    */
   setupAudio() {
     if (!this.audio) {
       this.audio = new Audio();
       this.audio.addEventListener('ended', () => this.onTrackEnd());
-      this.audio.addEventListener('timeupdate', () => this.updateProgress());
+      this.audio.addEventListener('timeupdate', () => {
+        this.updateProgress();
+        this.updateTimeInfo();
+      });
       this.audio.addEventListener('loadedmetadata', () => this.updateTimeInfo());
       this.audio.addEventListener('error', () => this.onError());
     }
@@ -383,9 +466,16 @@ class MP3Player {
     if (!this.audio) return;
 
     const progressFill = this.container.querySelector('.progress-fill');
-    if (progressFill && this.audio.duration) {
-      const percent = (this.audio.currentTime / this.audio.duration) * 100;
-      progressFill.style.width = percent + '%';
+    const duration = this.audio.duration || 0;
+    const current = duration ? this.audio.currentTime : 0;
+    if (progressFill) {
+      progressFill.style.width = (duration ? (current / duration) * 100 : 0) + '%';
+    }
+    const bar = this.container.querySelector('.progress-bar');
+    if (bar) {
+      bar.setAttribute('aria-valuemax', String(Math.floor(duration)));
+      bar.setAttribute('aria-valuenow', String(Math.floor(current)));
+      bar.setAttribute('aria-valuetext', MP3Player.formatTime(current));
     }
   }
 
@@ -396,16 +486,16 @@ class MP3Player {
     const timeInfo = this.container.querySelector('.time-info');
     if (!timeInfo || !this.audio) return;
 
-    const formatTime = (seconds) => {
-      if (!isFinite(seconds)) return '00:00';
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    };
-
-    const current = formatTime(this.audio.currentTime);
-    const duration = formatTime(this.audio.duration);
+    const current = MP3Player.formatTime(this.audio.currentTime);
+    const duration = MP3Player.formatTime(this.audio.duration);
     timeInfo.textContent = `${current} / ${duration}`;
+  }
+
+  static formatTime(seconds) {
+    if (!isFinite(seconds)) return '00:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 
   /**

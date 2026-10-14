@@ -60,7 +60,8 @@
     "stop": "Apturēt",
     "volume": "Skaļums",
     "loading": "Ielādē...",
-    "error": "Kļūda ielādējot audio"
+    "error": "Kļūda ielādējot audio",
+    "seek": "Pārtīt"
   }
 }
 

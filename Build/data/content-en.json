@@ -60,7 +60,8 @@
     "stop": "Stop",
     "volume": "Volume",
     "loading": "Loading...",
-    "error": "Error loading audio"
+    "error": "Error loading audio",
+    "seek": "Seek"
   }
 }
 

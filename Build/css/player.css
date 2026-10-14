@@ -168,17 +168,36 @@
 }
 
 .progress-bar {
+  position: relative;
   width: 100%;
   height: 6px;
   background-color: var(--color-border);
   border-radius: 3px;
-  overflow: hidden;
   cursor: pointer;
+  /* Stops the browser from scrolling the page while a finger drags along the bar. */
+  touch-action: none;
+}
+
+/* Enlarges the tap/click target to ~32px without changing layout height,
+   which the .playlist-slot reservation above depends on. */
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -13px;
+  bottom: -13px;
+}
+
+.progress-bar:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 4px;
 }
 
 .progress-fill {
   height: 100%;
   background-color: var(--color-accent-primary);
+  border-radius: inherit;
   width: 0%;
   transition: width 0.1s linear;
 }
@@ -279,11 +298,14 @@
     flex-basis: 100%;
   }
 
-  /* Not enough room to earn their keep at this width - track length and
-     the seek/progress bar (time-info still shows elapsed/total time). */
-  .track-duration,
-  .player-progress {
+  /* Not enough room to earn its keep at this width (time-info still
+     shows elapsed/total time). */
+  .track-duration {
     display: none;
+  }
+
+  .player-progress {
+    padding: 0.5rem 0;
   }
 }
 
