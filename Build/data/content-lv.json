@@ -61,7 +61,11 @@
     "volume": "Skaļums",
     "loading": "Ielādē...",
     "error": "Kļūda ielādējot audio",
-    "seek": "Pārtīt"
+    "seek": "Pārtīt",
+    "share": "Kopīgot dziesmu",
+    "shareCopied": "Saite nokopēta",
+    "openPlaylist": "Visi ieraksti",
+    "notFound": "Ieraksts nav atrasts"
   }
 }
 

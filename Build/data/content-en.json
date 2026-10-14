@@ -61,7 +61,11 @@
     "volume": "Volume",
     "loading": "Loading...",
     "error": "Error loading audio",
-    "seek": "Seek"
+    "seek": "Seek",
+    "share": "Share song",
+    "shareCopied": "Link copied",
+    "openPlaylist": "All recordings",
+    "notFound": "Recording not found"
   }
 }
 

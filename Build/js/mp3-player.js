@@ -5,9 +5,14 @@
  */
 
 class MP3Player {
-  constructor(containerId, playlistId) {
+  /**
+   * options.trackFilename: render only that one track (the shareable
+   * single-song page, track.html) instead of the whole playlist.
+   */
+  constructor(containerId, playlistId, options = {}) {
     this.container = document.getElementById(containerId);
     this.playlistId = playlistId;
+    this.trackFilename = options.trackFilename || null;
     this.playlist = null;
     this.currentTrackIndex = 0;
     this.audio = null;
@@ -44,6 +49,16 @@ class MP3Player {
         throw new Error(`Failed to load playlist: ${this.playlistId}`);
       }
       this.playlist = await response.json();
+      if (this.trackFilename) {
+        this.playlist.tracks = this.playlist.tracks.filter(t => t.filename === this.trackFilename);
+        if (this.playlist.tracks.length === 0) {
+          this.playlist = null;
+          this.container.innerHTML = `<p class="player-not-found" data-i18n="player.notFound">${this.t('notFound', 'Recording not found')}</p>`;
+        }
+      }
+      this.container.dispatchEvent(new CustomEvent('playlistload', {
+        detail: { playlist: this.playlist }
+      }));
     } catch (error) {
       console.error('Error loading playlist:', error);
       this.container.innerHTML = '<p>Error loading playlist</p>';
@@ -97,6 +112,9 @@ class MP3Player {
             <button class="player-btn stop-btn" aria-label="${this.t('stop', 'Stop')}" title="${this.t('stop', 'Stop')}">
               <span>⏹</span>
             </button>
+            <button type="button" class="player-btn share-btn" aria-label="${this.t('share', 'Share song')}" title="${this.t('share', 'Share song')}">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg>
+            </button>
           </div>
           <div class="volume-control">
             <input type="range" id="volume-${this.playlistId}" class="volume-slider"
@@ -123,6 +141,7 @@ class MP3Player {
     this.container.innerHTML = playerHTML;
     this.renderTrackList();
     this.setupEventListeners();
+    if (this.trackFilename) this.updateCurrentTrackInfo();
   }
 
   /**
@@ -154,6 +173,11 @@ class MP3Player {
     if (stopBtn) {
       stopBtn.setAttribute('aria-label', this.t('stop', 'Stop'));
       stopBtn.setAttribute('title', this.t('stop', 'Stop'));
+    }
+    const shareBtn = this.container.querySelector('.share-btn');
+    if (shareBtn) {
+      shareBtn.setAttribute('aria-label', this.t('share', 'Share song'));
+      shareBtn.setAttribute('title', this.t('share', 'Share song'));
     }
     if (volumeSlider) {
       volumeSlider.setAttribute('aria-label', this.t('volume', 'Volume'));
@@ -206,6 +230,10 @@ class MP3Player {
     }
     if (stopBtn) {
       stopBtn.addEventListener('click', () => this.stop());
+    }
+    const shareBtn = this.container.querySelector('.share-btn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => this.share());
     }
     if (volumeSlider) {
       volumeSlider.addEventListener('input', (e) => {
@@ -397,6 +425,68 @@ class MP3Player {
       track_filename: track.filename,
       playlist_id: this.playlistId
     });
+  }
+
+  /**
+   * Relative URL of the single-song page for a track.
+   */
+  getShareUrl(track) {
+    const params = new URLSearchParams({ playlist: this.playlistId, track: track.filename });
+    return `track.html?${params}`;
+  }
+
+  /**
+   * In a playlist, opens the current track's single-song page in a new tab.
+   * On that page itself, hands its URL to the OS share sheet where
+   * available, or copies it to the clipboard.
+   */
+  async share() {
+    const track = this.playlist && this.playlist.tracks[this.currentTrackIndex];
+    if (!track) return;
+
+    if (!this.trackFilename) {
+      window.open(this.getShareUrl(track), '_blank', 'noopener');
+      this.trackShareEvent(track, 'open_page');
+      return;
+    }
+
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: track.title, url });
+        this.trackShareEvent(track, 'web_share');
+      } catch (error) {
+        // AbortError just means the user closed the share sheet.
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      this.trackShareEvent(track, 'copy_link');
+      this.flashStatus(this.t('shareCopied', 'Link copied'));
+    } catch (error) {
+      console.error('Error copying link:', error);
+    }
+  }
+
+  trackShareEvent(track, method) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'share', {
+      method,
+      content_type: 'audio',
+      item_id: `${this.playlistId}/${track.filename}`
+    });
+  }
+
+  /**
+   * Briefly show a message in place of the current track name.
+   */
+  flashStatus(message) {
+    const el = this.container.querySelector('.current-track');
+    if (!el) return;
+    el.textContent = message;
+    clearTimeout(this.flashTimer);
+    this.flashTimer = setTimeout(() => this.updateCurrentTrackInfo(), 2000);
   }
 
   /**
