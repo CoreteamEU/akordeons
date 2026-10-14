@@ -20,6 +20,7 @@ across every Build/*.html file plus Build/js/version.js itself.
 import functools
 import http.server
 import json
+import os
 import pathlib
 import re
 import threading
@@ -102,8 +103,57 @@ def watch_loop():
             last = current
 
 
+class RangeRequestHandler(http.server.SimpleHTTPRequestHandler):
+    """Adds single-range `Range: bytes=` support, which GitHub Pages has and
+    SimpleHTTPRequestHandler lacks; without it browsers can't seek audio."""
+
+    range = None
+
+    def send_head(self):
+        self.range = None
+        match = re.fullmatch(r"bytes=(\d*)-(\d*)", self.headers.get("Range", "").strip())
+        path = self.translate_path(self.path)
+        if not match or not os.path.isfile(path):
+            return super().send_head()
+        size = os.path.getsize(path)
+        start_s, end_s = match.groups()
+        if start_s:
+            start, end = int(start_s), int(end_s) if end_s else size - 1
+        elif end_s:
+            start, end = max(0, size - int(end_s)), size - 1
+        else:
+            return super().send_head()
+        end = min(end, size - 1)
+        if start > end:
+            self.send_response(416)
+            self.send_header("Content-Range", f"bytes */{size}")
+            self.end_headers()
+            return None
+        f = open(path, "rb")
+        f.seek(start)
+        self.range = end - start + 1
+        self.send_response(206)
+        self.send_header("Content-type", self.guess_type(path))
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        self.send_header("Content-Length", str(self.range))
+        self.end_headers()
+        return f
+
+    def copyfile(self, source, outputfile):
+        if self.range is None:
+            return super().copyfile(source, outputfile)
+        remaining = self.range
+        while remaining > 0:
+            chunk = source.read(min(64 * 1024, remaining))
+            if not chunk:
+                break
+            outputfile.write(chunk)
+            remaining -= len(chunk)
+
+
 def serve():
-    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(BUILD))
+    handler = functools.partial(RangeRequestHandler, directory=str(BUILD))
     with http.server.ThreadingHTTPServer(("", PORT), handler) as httpd:
         print(f"[dev_server] Serving {BUILD} at http://localhost:{PORT}")
         httpd.serve_forever()
